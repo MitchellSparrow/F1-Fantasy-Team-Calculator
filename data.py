@@ -15,10 +15,14 @@ def get_f1_data(combined_cost_limit):
     data = result.json()
     players = data['players']
 
-    # pprint(players)
-
     drivers = []
     constructors = []
+    costList = []
+    pointsList = []
+    ppmList = []
+    streak_points = []
+    turbo_driver = []
+    turbo_points = []
 
     for player in players:
         # Check if the data entry is a driver or constructor
@@ -45,22 +49,11 @@ def get_f1_data(combined_cost_limit):
     df[['d1', 'd2', 'd3', 'd4', 'd5']] = pd.DataFrame(
         df[0].tolist(), index=df.index)
 
-    # print(df)
     df.columns = ['All Drivers', 'Constructer', 'Driver 1',
                   'Driver 2', 'Driver 3', 'Driver 4', 'Driver 5']
     df = df.drop(columns=['All Drivers'])
 
-    # print(df)
-
-    costList = []
-    pointsList = []
-    ppmList = []
-    streak_points = []
-    turbo_driver = []
-    turbo_points = []
     number_races_past = len(players[0]['season_prices'])
-
-    # print(number_races_past)
 
     for index, row in df.iterrows():
 
@@ -105,10 +98,7 @@ def get_f1_data(combined_cost_limit):
     df["Predicted Points"] = df["Streak Points"] + \
         df["Points"] / number_races_past + df["Turbo Points"]
 
-    # print(df)
-
     df = df.sort_values('Predicted Points', ascending=False)
     df = df.drop(df[df["Cost"] > combined_cost_limit].index)
 
-    # print(df.head())
     return df
