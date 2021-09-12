@@ -93,7 +93,7 @@ def get_f1_data(combined_cost_limit):
     df["Turbo Points"] = df["Turbo Points"] / number_races_past
     df["Cost"] = costList
     df["Points"] = pointsList
-    df["PPM"] = ppmList
+    # df["PPM"] = ppmList
     df["Streak Points"] = streak_points
     df["Predicted Points"] = df["Streak Points"] + \
         df["Points"] / number_races_past + df["Turbo Points"]
