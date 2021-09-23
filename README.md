@@ -31,3 +31,9 @@ Modify the COMBINED_COST_LIMIT in main.py to your maximum budget. Then run the f
 Make sure you have cloned the repository and are in the right directory. Then run the following command to install all the required dependencies.
 
 ```pip install -r requirements.txt```
+
+# References
+
+The HTML page styling was built from a pre existing and free template called Forty by HTML5. This template can be found at the following link:
+
+https://html5up.net/forty
