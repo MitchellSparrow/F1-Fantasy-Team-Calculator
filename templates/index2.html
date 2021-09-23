@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>F1 Fantasy Tracker</title>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}"  />
+	<noscript><link rel="stylesheet" href="../static/styles/noscript.css" /></noscript>
+    
+</head>
+
+<body class = "main_body">
+    <div id="loading">
+        <img id="loading-image" src="{{ url_for('static',filename='images/Rocket.gif') }}" alt="Loading..." />
+    </div>
+
+    <div id="wrapper">
+        <!-- Header -->
+        <header id="header" class="alt">
+            <a href="#" class="logo"><strong>F1 Analysis</strong> <span>by Mitchell Sparrow</span></a>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="landing.html">Landing</a></li>
+                <li><a href="generic.html">Generic</a></li>
+                <li><a href="elements.html">Elements</a></li>
+            </ul>
+            <ul class="actions stacked">
+                <li><a href="#" class="button primary fit">Get Started</a></li>
+                <li><a href="#" class="button fit">Log In</a></li>
+            </ul>
+        </nav>
+
+        <!-- Banner -->
+        <section id="banner" class="major">
+            <div class="inner">
+                <header class="major">
+                    <h1>Your favorite F1 fantasy analysis tool</h1>
+                </header>
+                <div class="content">
+                    <p>A site to help you select better F1 fantasy teams<br />
+                    so that you never loose another bet with your mates.</p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/MitchellSparrow/F1-Fantasy-Team-Calculator" target="_blank" class="button next scrolly">GitHub Code</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Search bar -->
+
+        <section id="search_bar">
+            <div class="inner">
+                <form action="/views/analysis/" method="POST">
+                    <div class="fields">
+                        <div class="field half">
+                            <label for="search">Budget</label>
+                            <input type="text" name="budget" id="search"/>
+                        </div>
+                        <div class="field half">
+                            <ul class="actions">
+                                <div id="search_button">
+                                    <li><input type="submit" value="Search" class="primary" onclick="$('#loading').show();" /></li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+
+        <section class="major">
+            <div id="table_inner" class="inner">
+                {{data | safe}}
+            </div>
+            
+        </section>
+
+        
+
+    <!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <ul class="icons">
+                    <li><a href="https://github.com/MitchellSparrow/" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/mitchell-sparrow/" target="_blank" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+                </ul>
+            </div>
+        </footer>
+
+			</div>
+
+        
+    </div>
+
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+
+
+</body>
+
+
+</html>
