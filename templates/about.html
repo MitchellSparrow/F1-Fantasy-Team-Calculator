@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>F1 Fantasy Tracker</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}"  />
+	<noscript><link rel="stylesheet" href="../static/styles/noscript.css" /></noscript>
+</head>
+
+<body class = "is-preload">
+    <div id="loading">
+        <img id="loading-image" src="{{ url_for('static',filename='images/Rocket.gif') }}" alt="Loading..." />
+    </div>
+
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="{{ url_for('home') }}" class="logo"><strong>F1 Analysis</strong> <span>by Mitchell Sparrow</span></a>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+            </ul>
+        </nav>
+
+
+        <!-- Main -->
+        <section class="major">
+            <div id="main" class="alt">
+                <!-- One -->
+                    <section id="one">
+                        <div class="inner">
+                            <header class="major">
+                                <h1>About</h1>
+                            </header>
+    
+                            <!-- Content -->
+                            <h2 id="content">Why? Just why?</h2>
+                            <p>This application was developed to try and help me do better in a formula 1 fantasy league. To put it nicely I was quite horrible so I wanted to find out what combination of drivers was 'theoretically' the best. I therefore made this application to help me do that. </p>
+                            <h2 id="content">How it works</h2>
+                            <p>The application works by creating a huge database of all possible combinations of drivers and constructors. It then orders this database based on the highest average points of the team. Now this is all good and well, but we do have cost limitations, therefore the application only returns the highest average scoring teams in your budget.</p>
+                            <h2 id="content">Important assumptions!!</h2>
+                            <p>The list takes streaks into account, and ASSUMES that the streak points will be achieved. For example if one driver is on a streak this week, those points will be added to the streak points and also to the total predicted points. There is however a high possibility that that driver will not get their streak.</p>
+                            <h2 id="content">Disclaimer</h2>
+                            <p>Although this application provides insight into the highest average scoring teams, it does NOT mean that that team will be the best on race day. As we know, anything can happen with crashes and mechanical problems. This application should therefore be used for FUN and try to give you more information so that you can make better decisions.</p>
+                            
+                        </div>
+                    </section>
+            </div>
+        </section>
+    
+        <!-- Footer -->
+        <footer style="padding: 2em 0 0 0 ;" id="footer">
+            <div class="inner">
+                <ul class="icons">
+                    <li><a href="https://github.com/MitchellSparrow/" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/mitchell-sparrow/" target="_blank" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='scripts/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/jquery.scrolly.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/jquery.scrollex.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/browser.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/breakpoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/util.js') }}" ></script>
+    <script  src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+    <script  src="{{ url_for('static', filename='scripts/main2.js') }}"></script>
+
+
+</body>
+
+
+</html>

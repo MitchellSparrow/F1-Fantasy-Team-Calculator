@@ -3380,7 +3380,7 @@ input, select, textarea {
 		-webkit-align-items: center;
 		-ms-align-items: center;
 		align-items: center;
-		background-image: url("../../images/banner.jpg");
+		/* background-image: url("../../images/banner.jpg"); */
 		display: -moz-flex;
 		display: -webkit-flex;
 		display: -ms-flex;
@@ -3953,11 +3953,9 @@ input, select, textarea {
 
         #table_inner {
             display: block;
-            
         }
 
         table.minimalistBlack {
-            
             border: 3px solid #000000;
             width: 100%;
             text-align: left;
@@ -3990,6 +3988,41 @@ input, select, textarea {
           table.minimalistBlack tfoot td {
             font-size: 14px;
           }
+
+          @media screen and (max-width: 1680px) {
+
+            #table_inner  {
+                    font-size: 20pt;
+                }
+            table.minimalistBlack tbody td {
+                    font-size: 16px;
+                  }
+
+            }
+
+            @media screen and (max-width: 1280px) {
+
+                #table_inner  {
+                    font-size: 18pt;
+                }
+                table.minimalistBlack tbody td {
+                    font-size: 16px;
+                  }
+
+            }
+
+            @media screen and (max-width: 360px) {
+
+                #table_inner  {
+                    font-size: 15pt;
+                }
+                table.minimalistBlack tbody td {
+                    font-size: 14px;
+                  }
+
+            }
+
+          
 
           #loading {
             position: fixed;
