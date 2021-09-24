@@ -29,6 +29,6 @@ def analysis():
     return render_template("index.html", name="Fantasy F1 Best Teams", data=x.to_html(classes='minimalistBlack'))
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    app.run()
 
 
