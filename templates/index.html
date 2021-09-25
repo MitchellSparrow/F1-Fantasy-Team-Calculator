@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}"  />
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156393130-2"></script>
     <script>
@@ -63,7 +64,7 @@
 
         <section id="search_bar">
             <div class="inner">
-                <form action="/analysis/" method="POST">
+                <form name="budget_form" action="/analysis/" method="POST">
                     <div class="fields">
                         <div class="field half">
                             <label for="search">Budget</label>
@@ -72,7 +73,7 @@
                         <div class="field half">
                             <ul class="actions">
                                 <div id="search_button">
-                                    <li><input type="submit" value="Search" class="primary" onclick="$('#loading').show();" /></li>
+                                    <li><input name="budget" type="submit" value="Search" class="primary" onclick="$('#loading').show();" /></li>
                                 </div>
                             </ul>
                         </div>

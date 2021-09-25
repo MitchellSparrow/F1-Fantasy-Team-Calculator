@@ -3953,6 +3953,8 @@ input, select, textarea {
 
         #table_inner {
             display: block;
+            overflow-x:auto;
+            
         }
 
         table.minimalistBlack {
@@ -3989,37 +3991,77 @@ input, select, textarea {
             font-size: 14px;
           }
 
-          @media screen and (max-width: 1680px) {
-
-            #table_inner  {
-                    font-size: 20pt;
+          @media screen and (max-width: 2000px) {
+                table.minimalistBlack thead th {
+                    font-size: 17px;
                 }
-            table.minimalistBlack tbody td {
+                #table_inner  {
+                    font-size: 17pt;
+                }
+                table.minimalistBlack tbody td {
                     font-size: 16px;
-                  }
-
+                }
             }
+
+          @media screen and (max-width: 1680px) {
+                table.minimalistBlack thead th {
+                    font-size: 14px;
+                }
+                #table_inner  {
+                    font-size: 14pt;
+                }
+                table.minimalistBlack tbody td {
+                    font-size: 13px;
+                }
+            }
+            
 
             @media screen and (max-width: 1280px) {
-
+                table.minimalistBlack thead th {
+                    font-size: 13px;
+                  }
                 #table_inner  {
-                    font-size: 18pt;
+                    font-size: 13pt;
                 }
                 table.minimalistBlack tbody td {
-                    font-size: 16px;
-                  }
-
+                    font-size: 12px;
+                }
             }
 
-            @media screen and (max-width: 360px) {
-
+            @media screen and (max-width: 850px) {
+                table.minimalistBlack thead th {
+                    font-size: 11px;
+                  }
                 #table_inner  {
-                    font-size: 15pt;
+                    font-size: 11pt;
                 }
                 table.minimalistBlack tbody td {
-                    font-size: 14px;
-                  }
+                    font-size: 10px;
+                }
+            }
 
+            @media screen and (max-width: 750px) {
+                table.minimalistBlack thead th {
+                    font-size: 11px;
+                  }
+                #table_inner  {
+                    font-size: 11pt;
+                }
+                table.minimalistBlack tbody td {
+                    font-size: 10px;
+                }
+            }
+            
+            @media screen and (max-width: 360px) {
+                table.minimalistBlack thead th {
+                    font-size: 11px;
+                  }
+                #table_inner  {
+                    font-size: 11pt;
+                }
+                table.minimalistBlack tbody td {
+                    font-size: 10px;
+                }
             }
 
           
