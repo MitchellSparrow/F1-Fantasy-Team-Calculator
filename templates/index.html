@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/small_logo.png') }}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/medium_logo.png') }}" sizes="32x32">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}"  />
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -66,7 +68,7 @@
                 <form name="budget_form" action="/analysis/" method="POST">
                     <div class="fields">
                         <div class="field half">
-                            <label for="search">Budget</label>
+                            <label for="search">Budget (in million)</label>
                             <input type="text" name="budget" id="search"/>
                         </div>
                         <div class="field half">

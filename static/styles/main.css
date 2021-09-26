@@ -4030,37 +4030,37 @@ input, select, textarea {
 
             @media screen and (max-width: 850px) {
                 table.minimalistBlack thead th {
-                    font-size: 11px;
+                    font-size: 13px;
                   }
                 #table_inner  {
-                    font-size: 11pt;
+                    font-size: 13pt;
                 }
                 table.minimalistBlack tbody td {
-                    font-size: 10px;
+                    font-size: 12px;
                 }
             }
 
             @media screen and (max-width: 750px) {
                 table.minimalistBlack thead th {
-                    font-size: 11px;
+                    font-size: 13px;
                   }
                 #table_inner  {
-                    font-size: 11pt;
+                    font-size: 13pt;
                 }
                 table.minimalistBlack tbody td {
-                    font-size: 10px;
+                    font-size: 12px;
                 }
             }
             
             @media screen and (max-width: 360px) {
                 table.minimalistBlack thead th {
-                    font-size: 11px;
+                    font-size: 13px;
                   }
                 #table_inner  {
-                    font-size: 11pt;
+                    font-size: 13pt;
                 }
                 table.minimalistBlack tbody td {
-                    font-size: 10px;
+                    font-size: 12px;
                 }
             }
 
