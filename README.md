@@ -6,17 +6,25 @@ The following repository is for an application to determine the statistically be
 
 ## 1.) Flask application (recommended)
 
-Run the app.py file, which will then display the local URL of the application such as:
+There are a few ways in which you can run the flask application. These are covered below.
 
-```http://127.0.0.1:8000/```
+### 1.1) Online
+
+The application is currently live and available to use at the following link:
+
+http://www.f1fantasyanalysis.com/
+
+### 1.2) Locally
+
+Run the following command in your terminal:
+
+```python main.py```
+
+This will then display the local URL of the application such as:
+
+```http://127.0.0.1:6000/```
 
 (This may be different on your computer. If there is an issue with the port number, you can change this)
-
-Then navigate to the views page as follows:
-
-```http://127.0.0.1:8000/views/```
-
-You should then be able to use the web application as normal.
 
 ## 2.) Running the raw python script
 

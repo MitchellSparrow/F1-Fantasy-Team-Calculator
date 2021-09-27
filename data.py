@@ -15,32 +15,20 @@ def get_f1_data(combined_cost_limit):
     data = result.json()
     players = data['players']
 
-    drivers = []
-    constructors = []
-    costList = []
-    pointsList = []
-    ppmList = []
-    streak_points = []
-    turbo_driver = []
-    turbo_points = []
+    drivers, constructors, costList, pointsList, ppmList, streak_points, turbo_driver, turbo_points = [], [], [], [], [], [], [], []
 
-    for player in players:
-        # Check if the data entry is a driver or constructor
-        if player['constructor_data'] == None:
-            drivers.append(
+    [(drivers.append(
                 Driver(player['display_name'],
                        player['season_score'],
                        player['price'],
                        player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                       player['streak_events_progress']['top_ten_in_a_row_race_progress']))
-
-        else:
-            constructors.append(
+                       player['streak_events_progress']['top_ten_in_a_row_race_progress'])) if player['constructor_data'] == None else constructors.append(
                 Constructor(player['display_name'],
                             player['season_score'],
                             player['price'],
                             player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                            player['streak_events_progress']['top_ten_in_a_row_race_progress']))
+                            player['streak_events_progress']['top_ten_in_a_row_race_progress']))) for player in players]
+    
 
     driver_combinations = list(combinations(drivers, 5))
     driver_constructors = list(product(driver_combinations, constructors))
@@ -57,16 +45,13 @@ def get_f1_data(combined_cost_limit):
 
     for index, row in df.iterrows():
 
-        sumPoints = 0
-        sumCost = 0
-        streaks = 0
-        bestTurbo = 0
+        sumPoints, sumCost, streaks, bestTurbo = 0, 0, 0, 0
         bestTurboName = ''
 
         for ind, column in enumerate(row):
             sumPoints += column.points
             sumCost += column.price
-            #res = column.streak_race
+
             if ind == 0:
                 if column.streak_quali == '2':
                     streaks += 5
