@@ -61,9 +61,11 @@
             </div>
         </section>
 
+
+
         <!-- Search bar -->
 
-        <section id="search_bar">
+        <!-- <section id="search_bar">
             <div class="inner">
                 <form name="budget_form" action="/analysis/" method="POST">
                     <div class="fields">
@@ -81,16 +83,79 @@
                     </div>
                 </form>
             </div>
-        </section>
-
+        </section> -->
 
         <section class="major">
-            <div id="table_inner" class="inner">
-                {{data | safe}}
+            <!-- Break -->
+            <div class="inner">
+                
+                <form name="budget_form" action="/analysis/" method="POST">
+                    <div class="fields">
+                        <div class="field half">
+                            <label for="search">Budget (in million)</label>
+                            <input type="text" name="budget" id="search"/>
+                        </div>
+                        <div class="field half">
+                            <label for="email">Streak points</label>
+                            <div style="padding: 0.4em 0 0em 0.2em ;" class="col-6 col-12-small">
+                                <input type="checkbox" id="demo-copy" name="streaks" checked>
+                                <label for="demo-copy">Include</label>
+                            </div>
+                        </div>
+
+                        <div class="field half">
+                            <label for="email">Drivers</label>
+                            <div id="driver_dropdown" class="dropdown" data-control="checkbox-dropdown">
+                                <label class="dropdown-label">Select</label>
+                                <div class="dropdown-list">
+                                  <a href="#" data-toggle="check-all" class="dropdown-option">
+                                    Check All   
+                                  </a>
+                                  {% for o in driver_list %}
+                                  <div class="col-6 col-12-small">
+                                      <input type="checkbox" id="{{ o.name }}" name = 'selected_drivers' value="{{ o.id }}" checked>
+                                      <label for="{{ o.name }}">{{ o.name }}</label>
+                                  </div>    
+                                  {%  endfor %}
+                                </div>
+                              </div>
+                        </div>
+                        <div class="field half">
+                            <label for="email">Constructors</label>
+                            <div id="constructor_dropdown" class="dropdown" data-control="checkbox-dropdown">
+                                <label class="dropdown-label">Select</label>
+                                <div class="dropdown-list">
+                                  <a href="#" data-toggle="check-all" class="dropdown-option">
+                                    Check All   
+                                  </a>
+                                  {% for o in constructor_list %}
+                                  <div class="col-6 col-12-small">
+                                      <input type="checkbox" id="{{ o.name }}" name = 'selected_constructors' value="{{ o.id }}" checked>
+                                      <label for="{{ o.name }}">{{ o.name }}</label>
+                                  </div>    
+                                  {%  endfor %}
+                                </div>
+                              </div>
+                        </div>
+                        
+                    </div>
+                    <ul class="actions">
+                        <div id="search_button">
+                            <li><input name="budget" type="submit" value="Search" class="primary" onclick="$('#loading').show();" /></li>
+                        </div>
+                    </ul>
+                </form>
+            
             </div>
             
         </section>
 
+    
+        <section class="major">
+            <div id="table_inner" class="inner">
+                {{data | safe}}
+            </div>
+        </section>
         
 
         <!-- Footer -->

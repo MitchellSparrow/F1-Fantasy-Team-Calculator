@@ -2,7 +2,8 @@
 
 class Driver:
 
-    def __init__(self, name, points, price, streak_quali, streak_race):
+    def __init__(self, id, name, points, price, streak_quali, streak_race):
+        self.id = id
         self.name = name
         self.price = price
         self.points = points

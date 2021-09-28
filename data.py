@@ -5,8 +5,37 @@ from constructor import Constructor
 from itertools import combinations, product
 import pandas as pd
 
+def get_drivers_and_consturctors():
 
-def get_f1_data(combined_cost_limit):
+    URL = 'https://fantasy-api.formula1.com/partner_games/f1/players'
+
+    result = requests.get(url=URL)
+
+    data = result.json()
+    players = data['players']
+
+    drivers, constructors, = [], []
+
+    [(drivers.append(
+                Driver(player['id'],
+                       player['display_name'],
+                       player['season_score'],
+                       player['price'],
+                       player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
+                       player['streak_events_progress']['top_ten_in_a_row_race_progress'])) if player['constructor_data'] == None else constructors.append(
+                Constructor(player['id'],
+                            player['display_name'],
+                            player['season_score'],
+                            player['price'],
+                            player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
+                            player['streak_events_progress']['top_ten_in_a_row_race_progress']))) for player in players]
+    
+
+    
+    return [drivers, constructors]
+
+
+def get_f1_data(combined_cost_limit, selected_drivers, selected_constructors, include_streak):
 
     URL = 'https://fantasy-api.formula1.com/partner_games/f1/players'
 
@@ -18,16 +47,18 @@ def get_f1_data(combined_cost_limit):
     drivers, constructors, costList, pointsList, ppmList, streak_points, turbo_driver, turbo_points = [], [], [], [], [], [], [], []
 
     [(drivers.append(
-                Driver(player['display_name'],
+                Driver(player['id'],
+                       player['display_name'],
                        player['season_score'],
                        player['price'],
                        player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                       player['streak_events_progress']['top_ten_in_a_row_race_progress'])) if player['constructor_data'] == None else constructors.append(
-                Constructor(player['display_name'],
+                       player['streak_events_progress']['top_ten_in_a_row_race_progress'])) if player['constructor_data'] == None and player['id'] in selected_drivers else constructors.append(
+                Constructor(player['id'],
+                            player['display_name'],
                             player['season_score'],
                             player['price'],
                             player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                            player['streak_events_progress']['top_ten_in_a_row_race_progress']))) for player in players]
+                            player['streak_events_progress']['top_ten_in_a_row_race_progress'])) if player['id'] in selected_constructors else []) for player in players]
     
 
     driver_combinations = list(combinations(drivers, 5))
@@ -79,11 +110,14 @@ def get_f1_data(combined_cost_limit):
     df["Cost"] = costList
     df["Points"] = pointsList
     # df["PPM"] = ppmList
-    df["Streak Points"] = streak_points
-    df["Predicted Points"] = df["Streak Points"] + \
-        df["Points"] / number_races_past + df["Turbo Points"]
+    if include_streak:
+        df["Streak Points"] = streak_points
+        df["Predicted Points"] = df["Streak Points"] + \
+            df["Points"] / number_races_past + df["Turbo Points"]
+    else:
+        df["Predicted Points"] = df["Points"] / number_races_past + df["Turbo Points"]
 
     df = df.sort_values('Predicted Points', ascending=False)
     df = df.drop(df[df["Cost"] > combined_cost_limit].index)
 
-    return df
+    return [df, drivers, constructors]

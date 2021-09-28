@@ -1,14 +1,17 @@
 from flask import Flask, render_template,request
 import pandas as pd
-from data import get_f1_data
+from data import get_f1_data, get_drivers_and_consturctors
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def home():
+    res = get_drivers_and_consturctors()
+    drivers = res[0]
+    constructors = res[1]
     x = pd.DataFrame()
-    return render_template("index.html", name="Fantasy F1 Best Teams", data=x.to_html(classes='minimalistBlack'))
+    return render_template("index.html", name="Fantasy F1 Best Teams", driver_list = [ob.__dict__ for ob in drivers], constructor_list = [ob.__dict__ for ob in constructors], data=x.to_html(classes='minimalistBlack'))
 
 @app.route("/about/")
 def about():
@@ -17,16 +20,35 @@ def about():
 
 @app.route('/analysis/', methods=['GET','POST'])
 def analysis():
-    try:
-        cost = request.form['budget']
-        df = get_f1_data(float(cost)).reset_index(drop=True)
-        df.index += 1 
-        x = df.head(30).round(2)
-        # x = pd.DataFrame(np.random.randn(20, 5))
-    except:
+    res = get_drivers_and_consturctors()
+    drivers = res[0]
+    constructors = res[1]
+
+    if request.method == "POST":
+    #try:
+        try:
+            streaks = request.form['streaks']
+        except:
+            streaks = False
+
+        selected_drivers = list(map(int,request.form.getlist("selected_drivers")))
+        selected_constructors = list(map(int,request.form.getlist("selected_constructors")))
+
+        if not (len(selected_constructors) < 1 or len(selected_drivers) < 5):
+
+            cost = request.form['budget']
+            res = get_f1_data(float(cost), selected_drivers, selected_constructors, streaks)
+            df = res[0].reset_index(drop=True)
+            df.index += 1 
+            x = df.head(30).round(2)
+        else:
+            x = pd.DataFrame()
+    
+    #except:
+    else:
         x = pd.DataFrame()
         
-    return render_template("index.html", name="Fantasy F1 Best Teams", data=x.to_html(classes='minimalistBlack'))
+    return render_template("index.html", name="Fantasy F1 Best Teams", driver_list = [ob.__dict__ for ob in drivers], constructor_list = [ob.__dict__ for ob in constructors], data=x.to_html(classes='minimalistBlack'))
 
 if __name__ == '__main__':
     app.run()
