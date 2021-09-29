@@ -48,6 +48,6 @@ def analysis():
     return render_template("index.html", name="Fantasy F1 Best Teams", driver_list = [ob.__dict__ for ob in drivers], constructor_list = [ob.__dict__ for ob in constructors], data=x.to_html(classes='minimalistBlack'))
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
 

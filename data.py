@@ -1,5 +1,4 @@
 import requests
-from pprint import pprint
 from driver import Driver
 from constructor import Constructor
 from itertools import combinations, product
@@ -30,34 +29,19 @@ def get_drivers_and_consturctors():
                             player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
                             player['streak_events_progress']['top_ten_in_a_row_race_progress']))) for player in players]
     
+    number_races = len(players[0]["season_prices"])
 
-    return [drivers, constructors]
+    return [drivers, constructors, number_races]
 
 
 def get_f1_data(combined_cost_limit, selected_drivers, selected_constructors, include_streak):
 
-    URL = 'https://fantasy-api.formula1.com/partner_games/f1/players'
-
-    result = requests.get(url=URL)
-
-    data = result.json()
-    players = data['players']
-
     drivers, constructors, costList, pointsList, ppmList, streak_points, turbo_driver, turbo_points = [], [], [], [], [], [], [], []
 
-    [(drivers.append(
-                Driver(player['id'],
-                       player['display_name'],
-                       player['season_score'],
-                       player['price'],
-                       player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                       player['streak_events_progress']['top_ten_in_a_row_race_progress'])) if player['constructor_data'] == None and player['id'] in selected_drivers else constructors.append(
-                Constructor(player['id'],
-                            player['display_name'],
-                            player['season_score'],
-                            player['price'],
-                            player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                            player['streak_events_progress']['top_ten_in_a_row_race_progress'])) if player['id'] in selected_constructors else []) for player in players]
+    [all_drivers, all_constructors, number_races_past] = get_drivers_and_consturctors()
+
+    [drivers.append(d) if int(d.id) in selected_drivers else [] for d in all_drivers]
+    [constructors.append(c) if int(c.id) in selected_constructors else [] for c in all_constructors]
     
 
     driver_combinations = list(combinations(drivers, 5))
@@ -70,8 +54,6 @@ def get_f1_data(combined_cost_limit, selected_drivers, selected_constructors, in
     df.columns = ['All Drivers', 'Constructer', 'Driver 1',
                   'Driver 2', 'Driver 3', 'Driver 4', 'Driver 5']
     df = df.drop(columns=['All Drivers'])
-
-    number_races_past = len(players[0]['season_prices'])
 
     for index, row in df.iterrows():
 
