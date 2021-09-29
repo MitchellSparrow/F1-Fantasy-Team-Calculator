@@ -31,7 +31,6 @@ def get_drivers_and_consturctors():
                             player['streak_events_progress']['top_ten_in_a_row_race_progress']))) for player in players]
     
 
-    
     return [drivers, constructors]
 
 

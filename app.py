@@ -25,7 +25,6 @@ def analysis():
     constructors = res[1]
 
     if request.method == "POST":
-    #try:
         try:
             streaks = request.form['streaks']
         except:
@@ -35,7 +34,6 @@ def analysis():
         selected_constructors = list(map(int,request.form.getlist("selected_constructors")))
 
         if not (len(selected_constructors) < 1 or len(selected_drivers) < 5):
-
             cost = request.form['budget']
             res = get_f1_data(float(cost), selected_drivers, selected_constructors, streaks)
             df = res[0].reset_index(drop=True)
@@ -44,7 +42,6 @@ def analysis():
         else:
             x = pd.DataFrame()
     
-    #except:
     else:
         x = pd.DataFrame()
         

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>F1 Fantasy Tracker</title>
+    <title>F1 Fantasy Analysis</title>
+    <meta name="description" content="A free fantasy formula 1 team suggestion application">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Mitchell Sparrow">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +12,15 @@
     <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/medium_logo.png') }}" sizes="32x32">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}"  />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156393130-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-156393130-2');
+    </script>
 	<noscript><link rel="stylesheet" href="../static/styles/noscript.css" /></noscript>
 </head>
 
