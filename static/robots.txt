@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.f1fantasyanalysis.com/sitemap.xml
+Sitemap: http://www.f1fantasyanalysis.com/sitemap.xml

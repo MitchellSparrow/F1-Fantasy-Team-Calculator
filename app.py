@@ -1,8 +1,8 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request, send_from_directory
 import pandas as pd
 from data import get_f1_data, get_drivers_and_consturctors
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='')
 
 
 @app.route("/")
@@ -47,7 +47,14 @@ def analysis():
         
     return render_template("index.html", name="Fantasy F1 Best Teams", driver_list = [ob.__dict__ for ob in drivers], constructor_list = [ob.__dict__ for ob in constructors], data=x.to_html(classes='minimalistBlack'))
 
+
+@app.route('/robots.txt')
+@app.route('/sitemap.xml')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 
