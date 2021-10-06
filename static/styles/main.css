@@ -3538,10 +3538,19 @@ input, select, textarea {
 
 		}
 
+		@media screen and (max-width: 950px) {
+
+			#banner h1 {
+				font-size: 2.4em;
+			}
+
+		}
+		
+
 		@media screen and (max-width: 736px) {
 
 			#banner {
-				padding: 5em 0 1em 0 ;
+				padding: 5em 0 0em 0 ;
 				height: auto;
 				margin-bottom: -2.75em;
 				max-height: none;
@@ -3581,7 +3590,7 @@ input, select, textarea {
 				}
 
 				#banner.major {
-					padding: 8em 0 4em 0 ;
+					padding: 8em 0 0em 0 ;
 				}
 
 		}
@@ -3765,7 +3774,7 @@ input, select, textarea {
 			@media screen and (max-width: 736px) {
 
 				#wrapper > * > .inner {
-					padding: 3em 0 1em 0 ;
+					padding: 2em 0 1em 0 ;
 					width: calc(100% - 3em);
 				}
 
