@@ -16,16 +16,20 @@ function checkInp(){
 $("form").submit(function (e) {
     var validationFailed = false;
     // validation
-    if (isNaN( $("#search").val()  )|| $("#search").val() == null || $("#search").val() == "") {
-        validationFailed = true;
-    } 
+    if (!isNaN( $("#search").val())){
+      if ( $("#search").val() == null || $("#search").val() == "") {
+          validationFailed = true;
+      } 
 
-    if (validationFailed) {
-        $('#loading').hide();
-        alert('Please enter your budget as a number!');
-        e.preventDefault();
-        return false;
+      if (validationFailed) {
+          $('#loading').hide();
+          alert('Please enter your budget as a number!');
+          e.preventDefault();
+          return false;
+      }
     }
+
+    
  }); 
 
  (function($) {

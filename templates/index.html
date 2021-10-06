@@ -51,9 +51,10 @@
         <nav id="menu">
             <ul class="links">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('explain') }}">How it works</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
             </ul>
-           
         </nav>
 
         <!-- Banner -->
@@ -66,41 +67,17 @@
                     <p>A site to help you select better F1 fantasy teams<br />
                     so that you never loose another bet with your mates.</p>
                     <ul class="actions">
-                        <li><a href="{{ url_for('about') }}" class="button next scrolly">How it works</a></li>
+                        <li><a href="{{ url_for('explain') }}" class="button next scrolly">How it works</a></li>
                     </ul>
                 </div>
                 
             </div>
         </section>
 
-
-
-        <!-- Search bar -->
-
-        <!-- <section id="search_bar">
-            <div class="inner">
-                <form name="budget_form" action="/analysis/" method="POST">
-                    <div class="fields">
-                        <div class="field half">
-                            <label for="search">Budget (in million)</label>
-                            <input type="text" name="budget" id="search"/>
-                        </div>
-                        <div class="field half">
-                            <ul class="actions">
-                                <div id="search_button">
-                                    <li><input name="budget" type="submit" value="Search" class="primary" onclick="$('#loading').show();" /></li>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section> -->
-
-        <section class="major">
+        <!-- Search Form -->
+        <section id = "search_form" class="major">
             <!-- Break -->
             <div class="inner">
-                
                 <form name="budget_form" action="/analysis/" method="POST">
                     <div class="fields">
                         <div class="field half">

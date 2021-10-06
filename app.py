@@ -15,8 +15,19 @@ def home():
 
 @app.route("/about/")
 def about():
-    x = pd.DataFrame()
     return render_template("about.html", name="About")
+
+@app.route("/contact/")
+def contact():
+    return render_template("contact.html", name="Contact")
+
+@app.route("/explain/")
+def explain():
+    return render_template("explain.html", name="Explain")
+
+@app.route("/thanks/")
+def thanks():
+    return render_template("thanks.html", name="Thanks")
 
 @app.route('/analysis/', methods=['GET','POST'])
 def analysis():
