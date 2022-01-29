@@ -13,7 +13,6 @@ def home():
         return render_template("season_end.html", name="Fantasy Analysis Coming Soon!")
     return render_template("index.html", name="Fantasy F1 Analysis Home")
 
-
 @app.route("/team_suggestions/")
 def fantasy_suggestions():
     if SEASON_END:
@@ -157,6 +156,6 @@ def static_from_root():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run()
 
 
