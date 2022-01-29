@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Formula One Betting Data Analysis | F1 Fantasy Analysis</title>
+    <meta name="description" content="All the Formula One betting data you need to help make better choices for Fantasy F1">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Mitchell Sparrow">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="{{ url_for('static',filename='images/large_logo.png') }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="200">
+    <meta property="og:image:height" content="200">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/small_logo.png') }}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/medium_logo.png') }}" sizes="32x32">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}"  />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156393130-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-156393130-2');
+    </script>
+    
+	<noscript><link rel="stylesheet" href="../static/styles/noscript.css" /></noscript>
+</head>
+
+<body class = "is-preload">
+    <div id="loading">
+        <img id="loading-image" src="{{ url_for('static',filename='images/Rocket.gif') }}" alt="Loading..." />
+    </div>
+
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="{{ url_for('home') }}" class="logo"><strong>F1 Analysis</strong> <span>by Mitchell Sparrow</span></a>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('fantasy_suggestions') }}">F1 Fantasy Team Suggestions</a></li>
+                <li><a href="{{ url_for('bets') }}">F1 Betting Data</a></li>
+                <li><a href="{{ url_for('news') }}">Latest F1 News</a></li>
+                <li><a href="{{ url_for('explain') }}">How it works</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+
+
+        <!-- Main -->
+        <section class="major">
+            <div id="main" class="alt">
+                <!-- One -->
+                    <section id="one">
+                        <div class="inner">
+                            <header style="width: 100%;" class="major">
+                                <h1 style="width: 100%;">Formula One betting data analysis</h1>
+                            </header>
+                            <p>The following page provides the statistics of the current betting odds of the Formula One drivers and constructors. The table below also shows the driver / constructor current price, as well as their average points that they have achieved for the current season. There are also a few columns which represent the current driver / constructor price rank, points rank and odds rank. </p>
+                            <p>The green highlighted values indicate that the odds rank is currently better than the current points or price rank. A red highlighted value indicates that the odds rank is currently worse than the current points or price rank. Currently all of the odds are collected from SkyBet, and can be found <a href="https://m.skybet.com" target="_blank">here</a>. In future we hope to add more betting site data to this page. For more information on how this page works and how to use the data, please refer to the <a href="{{ url_for('explain') }}" >How It Works</a> page.</p>
+                            
+                            <h3>Betting Website:</h3>
+                            <ul class="actions small">
+                                <li><a class="button primary small">Skybet</a></li>
+                                <li><a class="button small">Other sites coming soon!</a></li>
+                            </ul>
+                
+                            <hr class="major" />
+
+                            <!-- Elements -->
+                                
+                                <div id="betting_table_columns" class="row gtr-200">
+                                    <div class="col-6 col-12-medium">
+                                        <!-- Table -->
+                                            <h3>Driver Championship Odds:</h3>
+                                            <div  class="table-wrapper">
+                                                <table class="alt" id="driver_bets_table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Driver Name</th>
+                                                            <th>Current Price</th>
+                                                            <th>Avg Points</th>
+                                                            <th>Betting Odds</th>
+                                                            <th>Price Rank</th>
+                                                            <th>Points Rank</th>
+                                                            <th>Odds Rank</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for i in driver_list %}
+                                                        <tr class="odds_row">
+                                                            <td>{{i.name }}</td>
+                                                            <td>{{i.price}}</td>
+                                                            <td>{{i.avg_points}}</td>
+                                                            <td>{{i.odds}}</td>
+                                                            <td class = "price_rank">{{i.price_rank}}</td>
+                                                            <td class = "points_rank">{{i.avg_points_rank}}</td>
+                                                            <td class = "odds_rank">{{i.odds_rank}}</td>
+                                                        </tr>
+                                                        {%  endfor %}
+                                                    </tbody>
+                                                    
+                                                </table>
+                                            </div>
+
+                                    </div>
+                                    <div class="col-6 col-12-medium">
+
+                                         <!-- Table -->
+                                         <h3>Constructor Championship Odds:</h3>
+                                         <div class="table-wrapper">
+                                             <table class="alt" id="constructor_bets_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Constructor Name</th>
+                                                        <th>Current Price</th>
+                                                        <th>Avg Points</th>
+                                                        <th>Betting Odds</th>
+                                                        <th>Price Rank</th>
+                                                        <th>Points Rank</th>
+                                                        <th>Odds Rank</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for i in constructor_list %}
+                                                    <tr class="odds_row">
+                                                        <td>{{i.name }}</td>
+                                                        <td>{{i.price}}</td>
+                                                        <td>{{i.avg_points}}</td>
+                                                        <td>{{i.odds}}</td>
+                                                        <td class = "price_rank">{{i.price_rank}}</td>
+                                                        <td class = "points_rank">{{i.avg_points_rank}}</td>
+                                                        <td class = "odds_rank">{{i.odds_rank}}</td>
+                                                    </tr>
+                                                    {%  endfor %}
+                                                </tbody>
+                                                 
+                                             </table>
+                                         </div>
+
+                                        
+
+                                    </div>
+                                </div>
+
+                        </div>
+                    </section>
+
+            </div>
+        </section>
+    
+        <!-- Footer -->
+        <footer style="padding: 2em 0 0 0 ;" id="footer">
+            <div class="inner">
+                <ul class="icons">
+                    <li><a href="https://github.com/MitchellSparrow/" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/mitchell-sparrow/" target="_blank" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                    <li><a href="https://www.instagram.com/f1fantasyanalysis/" target="_blank" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li> <a href="https://www.termsfeed.com/live/983158b2-ed54-4a0f-ab8d-915864e265a3" target="_blank">Privacy Policy</a> </li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='scripts/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/jquery.scrolly.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/jquery.scrollex.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/browser.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/breakpoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/util.js') }}" ></script>
+    <script  src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+    <script  src="{{ url_for('static', filename='scripts/main2.js') }}"></script>
+
+
+</body>
+
+
+</html>

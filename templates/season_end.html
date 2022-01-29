@@ -40,24 +40,8 @@
     <div id="wrapper">
         <!-- Header -->
         <header id="header" class="alt">
-            <a href="{{ url_for('home') }}" class="logo"><strong>F1 Analysis</strong> <span>by Mitchell Sparrow</span></a>
-            <nav>
-                <a href="#menu">Menu</a>
-            </nav>
+           
         </header>
-
-        <!-- Menu -->
-        <nav id="menu">
-            <ul class="links">
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('fantasy_suggestions') }}">F1 Fantasy Team Suggestions</a></li>
-                <li><a href="{{ url_for('bets') }}">F1 Betting Data</a></li>
-                <li><a href="{{ url_for('news') }}">Latest F1 News</a></li>
-                <li><a href="{{ url_for('explain') }}">How it works</a></li>
-                <li><a href="{{ url_for('about') }}">About</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
-            </ul>
-        </nav>
 
         <!-- Banner -->
         <section id="banner" class="major">
@@ -65,58 +49,14 @@
                 <header class="major">
                     <h1>Your favorite F1 fantasy analysis tool</h1>
                 </header>
+                <div style="height: 2em;"></div>
                 <div class="content">
-                    <p>A site to help you select better F1 fantasy teams<br />
-                    so that you never loose another bet with your mates.</p>
-                    <ul class="actions">
-                        <li><a href="{{ url_for('explain') }}" class="button next scrolly">How it works</a></li>
-                    </ul>
+                    <h2>The 2022 season is coming soon! Follow us on social media at the links below to know when we are back up and running!</h2>
                 </div>
-                
             </div>
         </section>
 
-        <!-- Banner -->
-        <section  class="major">
-            <div class="inner">
-                
-                <div class="content">
-                    <p>Welcome to F1 Fantasy Analysis! We are a website that provides you with some useful Formula One Fantasy tools so that you can make better choices for your fantasy team. We have a number of tools available which can be selected below! Each tool has an explanation on the page itself, however for more information please refer to our How It Works page <a href="{{ url_for('explain') }}" >here</a>. Happy analysis and good luck!</p>
-                </div>
-                
-            </div>
-        </section>
-
-
-
-        <section class="major">
-            <div id="main" class="alt">
-                <!-- One -->
-                    <section  id="one" class="major">
-                        <div class="inner" style="padding-top: 0.5em;">
-                            <h2>Select a tool:</h2>
-                            <div class="box alt">
-                                <div id="home_images_row" class="row gtr-50 gtr-uniform">
-                                    <div  class="col-4"><span class="image fit" id="image_home_left" ><a href="{{ url_for('fantasy_suggestions') }}"> <img class="home_images" src="{{url_for('static', filename='images/4.png')}}" alt="" /></a> </span></div>
-                                    <div class="col-4"><span class="image fit" id="image_home_middle" ><a href="{{ url_for('bets') }}"> <img class="home_images" src="{{url_for('static', filename='images/5.png')}}" alt="" /></a></span></div>
-                                    <div class="col-4"><span class="image fit" id="image_home_right"  ><a href="{{ url_for('news') }}"> <img class="home_images" src="{{url_for('static', filename='images/6.png')}}" alt="" /></a></span></div>
-                                </div>
-                            </div>
-                            <h2>Explore other pages:</h2>
-                            <div class="box alt">
-                                <div id="home_images_row" class="row gtr-50 gtr-uniform">
-                                    <div class="col-4"><span class="image fit" id="image_home_left"><a href="{{ url_for('explain') }}"> <img class="home_images" src="{{url_for('static', filename='images/7.png')}}" alt="" /></a> </span></div>
-                                    <div class="col-4"><span class="image fit" id="image_home_middle" ><a href="{{ url_for('about') }}"> <img class="home_images" src="{{url_for('static', filename='images/8.png')}}" alt="" /></a></span></div>
-                                    <div class="col-4"><span class="image fit"  id="image_home_right"><a href="{{ url_for('contact') }}"> <img class="home_images" src="{{url_for('static', filename='images/9.png')}}" alt="" /></a></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-            </div>
-        </section>
-
-        
+        <div style="height: 5em;"></div>
 
          <!-- Footer -->
          <footer style="padding: 2em 0 0 0 ;" id="footer">

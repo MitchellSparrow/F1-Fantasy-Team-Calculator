@@ -125,5 +125,102 @@ $("form").submit(function (e) {
   }
 })(jQuery);
 
+$(document).ready(function(){
+  $('#driver_bets_table tr.odds_row').each(function(){
+      if (parseInt($(this).find(".price_rank").text(), 10) < parseInt($(this).find(".odds_rank").text(), 10)) {
+          $(this).find(".price_rank").css('background-color','hsla(0, 100%, 50%, 0.4)');
+      }else if (parseInt($(this).find(".price_rank").text(), 10) > parseInt($(this).find(".odds_rank").text(), 10)) {
+        $(this).find(".price_rank").css('background-color','hsla(120,60%,70%,0.5)');
+      }
+      if (parseInt($(this).find(".points_rank").text(), 10) < parseInt($(this).find(".odds_rank").text(), 10)) {
+        $(this).find(".points_rank").css('background-color','hsla(0, 100%, 50%, 0.4)');
+        }else if (parseInt($(this).find(".points_rank").text(), 10) > parseInt($(this).find(".odds_rank").text(), 10)) {
+          $(this).find(".points_rank").css('background-color','hsla(120,60%,70%,0.5)');
+      }
+  });
+
+  $('#constructor_bets_table tr.odds_row').each(function(){
+    if (parseInt($(this).find(".price_rank").text(), 10) < parseInt($(this).find(".odds_rank").text(), 10)) {
+        $(this).find(".price_rank").css('background-color','hsla(0, 100%, 50%, 0.4)');
+    }else if (parseInt($(this).find(".price_rank").text(), 10) > parseInt($(this).find(".odds_rank").text(), 10)) {
+      $(this).find(".price_rank").css('background-color','hsla(120,60%,70%,0.5)');
+    }
+    if (parseInt($(this).find(".points_rank").text(), 10) < parseInt($(this).find(".odds_rank").text(), 10)) {
+      $(this).find(".points_rank").css('background-color','hsla(0, 100%, 50%, 0.4)');
+      }else if (parseInt($(this).find(".points_rank").text(), 10) > parseInt($(this).find(".odds_rank").text(), 10)) {
+        $(this).find(".points_rank").css('background-color','hsla(120,60%,70%,0.5)');
+    }
+});
+
+
+
+});
+
+
+
+$(document).ready(function(){
+  $('#btn-all, #btn-guardian, #btn-times, #btn-nyt, #btn-cityam, #btn-telegraph').click(function(){
+      $('#btn-all, #btn-guardian, #btn-times, #btn-nyt, #btn-cityam, #btn-telegraph').removeClass('primary');
+      $(this).addClass('primary');
+      update_filtered_news();
+  });
+  
+});
+
+
+var divs;
+    
+$('.news_item').each(function(i){
+  $(this).data('initial-index', i);
+});
+
+
+function update_filtered_news(){
+  if(divs) {
+    $(divs).appendTo('.news_board_items').each(function(){
+          var oldIndex = $(this).data('initial-index');
+          $('.news_item').eq(oldIndex).before(this);
+      });
+      divs = null;
+  } 
+ 
+  var input, filter, ul, li, a, i, txtValue;
+  source_filter = $(".primary").text();
+  //console.log(source_filter);
+  input = document.getElementById('filter_news_text');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("news_table");
+  li = ul.getElementsByTagName('tr');
+
+  test = []
+
+ 
+// Loop through all list items, and hide those who don't match the search query
+for (i = 0; i < li.length; i++) {
+  a = li[i];
+  //console.log(a.getElementsByClassName("news_item_source")[0].textContent, source_filter);
+  if(a.getElementsByClassName("news_item_source")[0].textContent == source_filter || source_filter == "All News"){
+    
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    } else {
+      test.push(li[i]);
+    }
+  }else{
+    test.push(li[i]);
+  }
+  
+}
+divs = $(test).detach();
+}
+
+$(document).keyup(function() { 
+  update_filtered_news();
+});
+
+
+
+
+
 
 

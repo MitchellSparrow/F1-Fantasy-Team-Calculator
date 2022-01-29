@@ -2452,6 +2452,19 @@ input, select, textarea {
 				background-color: rgba(212, 212, 255, 0.035);
 			}
 
+	
+			table tbody tr.hidden {
+				display: none;
+			  }
+			  
+			  /* table tbody tr.hidden ~ .box:nth-child(odd) {
+				background: green;
+			  }
+			  
+			  table tbody tr.hidden ~ .box:nth-child(even) {
+				background: orange;
+			  } */
+
 		table td {
 			padding: 0.75em 0.75em;
 		}
@@ -3545,6 +3558,8 @@ input, select, textarea {
 			}
 
 		}
+
+
 		
 
 		@media screen and (max-width: 736px) {
@@ -4008,6 +4023,7 @@ input, select, textarea {
                 #table_inner  {
                     font-size: 17pt;
                 }
+				
                 table.minimalistBlack tbody td {
                     font-size: 16px;
                 }
@@ -4020,6 +4036,7 @@ input, select, textarea {
                 #table_inner  {
                     font-size: 14pt;
                 }
+				
                 table.minimalistBlack tbody td {
                     font-size: 13px;
                 }
@@ -4033,9 +4050,50 @@ input, select, textarea {
                 #table_inner  {
                     font-size: 13pt;
                 }
+				
                 table.minimalistBlack tbody td {
                     font-size: 12px;
                 }
+            }
+
+			@media screen and (max-width: 2000px) {
+                
+				#betting_table_columns{
+					font-size: 13pt;
+				}
+                
+            }
+
+			@media screen and (max-width: 1280px) {
+                
+				#betting_table_columns{
+					font-size: 12pt;
+				}
+                
+            }
+
+			@media screen and (max-width: 1140px) {
+                
+				#betting_table_columns{
+					font-size: 10pt;
+				}
+                
+            }
+
+			@media screen and (max-width: 980px) {
+                
+				#betting_table_columns{
+					font-size: 12pt;
+				}
+                
+            }
+
+			@media screen and (max-width: 560px) {
+                
+				#betting_table_columns{
+					font-size: 10pt;
+				}
+                
             }
 
             @media screen and (max-width: 850px) {
@@ -4045,6 +4103,7 @@ input, select, textarea {
                 #table_inner  {
                     font-size: 13pt;
                 }
+				
                 table.minimalistBlack tbody td {
                     font-size: 12px;
                 }
@@ -4057,6 +4116,7 @@ input, select, textarea {
                 #table_inner  {
                     font-size: 13pt;
                 }
+				
                 table.minimalistBlack tbody td {
                     font-size: 12px;
                 }
@@ -4169,3 +4229,49 @@ input, select, textarea {
 
 
 
+.home_images{
+	min-width: 200px;
+	-moz-box-shadow: 8px 8px 15px rgba(0,0,0,0.23);
+	-webkit-box-shadow: 8px 8px 15px rgba(0,0,0,0.23);
+	box-shadow: 8px 8px 15px rgba(0,0,0,0.23);
+	-moz-border-radius:50px;
+	-webkit-border-radius:50px;
+	border-radius:50px;
+}
+
+#image_home_left{
+	padding-right: 1em;
+}
+#image_home_middle{
+	padding: 0em 0.5em;
+}
+#image_home_right{
+	padding-left: 1em;
+}
+
+
+@media screen and (max-width: 680px) {
+
+	#home_images_row {
+		display: block;
+	}
+
+	#image_home_left{
+		padding-right: 0;
+		
+	}
+	#image_home_middle{
+		padding: 0;
+	}
+	#image_home_right{
+		padding-left: 0;
+	}
+
+	#home_images_row .col-4 {
+		width: 100%;
+		padding: 2em 1em;		
+	}
+
+	
+
+}

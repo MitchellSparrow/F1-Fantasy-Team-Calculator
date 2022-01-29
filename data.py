@@ -1,37 +1,74 @@
 import requests
 from driver import Driver
 from constructor import Constructor
+from bet import Bet
+from news import Article
 from itertools import combinations, product
 import pandas as pd
+
 
 def get_drivers_and_consturctors():
 
     URL = 'https://fantasy-api.formula1.com/partner_games/f1/players'
 
+    try:
+
+        result = requests.get(url=URL)
+
+        data = result.json()
+        players = data['players']
+
+        drivers, constructors, = [], []
+
+        [(drivers.append(
+                    Driver(player['id'],
+                        player['display_name'],
+                        player['season_score'],
+                        player['price'],
+                        player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
+                        player['streak_events_progress']['top_ten_in_a_row_race_progress'])) if player['constructor_data'] == None else constructors.append(
+                    Constructor(player['id'],
+                                player['display_name'],
+                                player['season_score'],
+                                player['price'],
+                                player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
+                                player['streak_events_progress']['top_ten_in_a_row_race_progress']))) for player in players]
+        
+        number_races = len(players[0]["season_prices"])
+
+    except:
+        drivers = []
+        constructors = []
+        number_races = 0
+
+    return [drivers, constructors, number_races]
+
+def get_betting_data():
+
+    URL = "https://formulaoneapi.herokuapp.com/bets"
+
     result = requests.get(url=URL)
 
     data = result.json()
-    players = data['players']
+    drivers = data['drivers_championship']
+    constructors = data['constructors_championship']
 
-    drivers, constructors, = [], []
+    driver_bet, constructor_bets, = [], []
 
-    [(drivers.append(
-                Driver(player['id'],
-                       player['display_name'],
-                       player['season_score'],
-                       player['price'],
-                       player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                       player['streak_events_progress']['top_ten_in_a_row_race_progress'])) if player['constructor_data'] == None else constructors.append(
-                Constructor(player['id'],
-                            player['display_name'],
-                            player['season_score'],
-                            player['price'],
-                            player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                            player['streak_events_progress']['top_ten_in_a_row_race_progress']))) for player in players]
-    
-    number_races = len(players[0]["season_prices"])
+    [(driver_bet.append(Bet(driver['name'],driver['odds']))) for driver in drivers]
+    [(constructor_bets.append(Bet(constructor['name'],constructor['odds']))) for constructor in constructors]
 
-    return [drivers, constructors, number_races]
+    return [driver_bet, constructor_bets]
+
+def get_news():
+    URL = "https://formulaoneapi.herokuapp.com/news"
+    result = requests.get(url=URL)
+
+    data = result.json()
+    articles = []
+    [(articles.append(Article(article['title'],article['url'],article['source']))) for article in data]
+
+    return articles
 
 
 def get_f1_data(combined_cost_limit, selected_drivers, selected_constructors, include_streak):

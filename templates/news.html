@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Contact Us | F1 Fantasy Analysis</title>
-    <meta name="description" content="How to contact us at Fantasy Formula One Analysis">
+    <title>Latest Formula One News | F1 News Filter Application</title>
+    <meta name="description" content="A free application which allows you to see and filter the latest Formula One news from various sites!">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Mitchell Sparrow">
     <meta charset="UTF-8">
@@ -57,49 +57,68 @@
         </nav>
 
         <!-- Main -->
+        <!-- Main -->
         <section class="major">
             <div id="main" class="alt">
                 <!-- One -->
-                    <section id="one">
-                        <div class="inner">
-                            <header class="major">
-                                <h1>Contact</h1>
+                    <section  id="one" class="major">
+                        <div class="inner"  >
+                            <header style="width: 100%;" class="major">
+                                <h1 style="width: 100%;">Top Formula One news articles</h1>
                             </header>
-    
-                            <!-- Content -->
-                            <h2 id="content">How to get in touch</h2>
-                            <p>If you have any suggestions for future features, experience any bugs or content issues, or just want to reach out for any other reason then please do not hesitate to fill in the form below to get in touch. We will aim to get back to you as soon as we can. If the form below is not allowing you to submit anything, then please empty your browser cache of this page and reload the page.</p>
+                            <p>The following page provides a list of all the latest Formula One news articles from different websites. If you click on an article it will take you directly to the host website where you can read it there. You can also filter the news articles based on the news source, as well as a filter text box.</p>
                             
-                        </div>
-                    </section>
-                    <!-- Contact -->
-                    <section id="contact">
-                        <div class="inner">
-                            <section>
-                                <form method="post" action="https://formsubmit.co/f1fantasyanalysis@gmail.com">
-                                    <div class="fields">
-                                        <input type="hidden" name="_next" value = "https://www.f1fantasyanalysis.com/thanks/">
-                                        <div class="field half">
-                                            <label for="name">Name</label>
-                                            <input type="text" name="name" id="name" required />
-                                        </div>
-                                        <div class="field half">
-                                            <label for="email">Email</label>
-                                            <input type="text" name="email" id="email" required/>
-                                        </div>
-                                        <div class="field">
-                                            <label for="message">Message</label>
-                                            <textarea name="message" id="message" rows="6" required></textarea>
-                                        </div>
+                                <h3>News Source:</h3>
+                                <ul style="padding: 0.4em 0 1em 0em; overflow: auto;" class="actions small">
+                                    <li><a id = 'btn-all' class="button primary small">All News</a></li>
+                                    <li><a id = 'btn-guardian' class="button small">Guardian</a></li>
+                                    <li><a id = 'btn-times' class="button small">Times</a></li>
+                                    <li><a id = 'btn-nyt' class="button small">NYT</a></li>
+                                    <li><a id = 'btn-telegraph' class="button small">Telegraph</a></li>
+                                    <li><a id = 'btn-cityam' class="button small">City A.M.</a></li>
+                                </ul>
+                            
+                                <h3>Filter Results:</h3>
+                                <input type="text" id="filter_news_text" placeholder="e.g. Max Verstappen">
+                            
+                      
+                
+                            <hr class="major" />
+
+                            <!-- Elements -->
+                                
+                                <div class="row gtr-200">
+                                    
+                                    <!-- Table -->
+                                    <!-- <h3>Driver Odds:</h3> -->
+                                    <div class="table-wrapper" style="width:100%;">
+                                        <table class="alt" >
+                                            <thead>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Source</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id = "news_table" class="news_board_items">
+                                                {% for i in article_list %}
+                                                <tr>
+                                                    <td style="width: 80%;"> 
+                                                        <a  class = 'news_item' href= {{i.url}} target="_blank" >{{i.title}}</a>
+                                                    </td>
+                                                    <td class = 'news_item_source'>{{i.source}}</td>
+                                                </tr>
+                                                {%  endfor %}
+                                            </tbody>
+                                            
+                                        </table>
                                     </div>
-                                    <ul class="actions">
-                                        <li><input type="submit" value="Send Message" class="primary" /></li>
-                                        <li><input type="reset" value="Clear" /></li>
-                                    </ul>
-                                </form>
-                            </section>
+
+                                   
+                                </div>
+
                         </div>
                     </section>
+
             </div>
         </section>
     

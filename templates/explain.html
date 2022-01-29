@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>F1 Fantasy Analysis and Team Suggestions Application | F1 Fantasy Analysis</title>
-    <meta name="description" content="A free fantasy formula 1 team suggestion application">
+    <title>How To Use Fantasy Formula One Analysis | Do Better At Fantasy F1</title>
+    <meta name="description" content="How the Fantasy Formula One analysis tool website works: Everything you need to know to perform better at Fantasy F1!">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Mitchell Sparrow">
     <meta charset="UTF-8">
@@ -48,6 +48,9 @@
         <nav id="menu">
             <ul class="links">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('fantasy_suggestions') }}">F1 Fantasy Team Suggestions</a></li>
+                <li><a href="{{ url_for('bets') }}">F1 Betting Data</a></li>
+                <li><a href="{{ url_for('news') }}">Latest F1 News</a></li>
                 <li><a href="{{ url_for('explain') }}">How it works</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
@@ -65,13 +68,19 @@
                                 <h1>How it works</h1>
                             </header>
                             <!-- Content -->
-                            <h2 id="content">Overview</h2>
+                            <h2 id="content">Team suggestions page</h2>
+                            <h3 id="content">Overview</h3>
                             <p>The application works by creating a huge database of all possible combinations of drivers and constructors. It then orders this database based on the highest average points of the team. Now this is all good and well, but we do have cost limitations, therefore the application only returns the highest average scoring teams in your budget. The application also allows you to select exactly what drivers and constructors you want to analyse. The default includes all drivers and constructors.</p>
-                            <h2 id="content">Important assumptions!!</h2>
+                            <h3 id="content">Important assumptions!!</h3>
                             <p>The list takes streaks into account, and ASSUMES that the streak points will be achieved. For example if one driver is on a streak this week, those points will be added to the streak points and also to the total predicted points. There is however a high possibility that that driver will not get their streak. You can choose to exclude the streak points in the predicted points by unchecking the streak points box before performing the search.</p>
-                            <h2 id="content">Disclaimer</h2>
+                            <h3 id="content">Disclaimer</h2>
                             <p>Although this application provides insight into the highest average scoring teams in your budget, it does NOT mean that those teams will be the best on race day. As we know, anything can happen with crashes, penalties and mechanical problems. This application should therefore not be seen as an application that will provide the best teams on race day, but rather an application that can help you select better teams.</p>
-                            
+                            <h2 id="content">F1 betting data page</h2>
+                            <h3 id="content">Overview</h3>
+                            <p>Whats better than having team suggestion data? You guessed it, having even more driver and constructor data. The F1 betting data page provides not only the betting odds and rank of the drivers, however it also provides the current average points scoring and price values and rank, as well as how these compare to the current odds value and rank.</p>
+                            <h3 id="content">How to use the data</h3>
+                            <p>Betting sites use complex statistics as well as a wealth of data to set their odds. After all, they are the ones who stand the chance to loose money. The betting odds on these websites are therefore a good representation of who is predicted to do well, and will often change during the weekend based on qualifying times, crashes in qualifying etc.</p>
+                            <p>The goal of this page is to highlight the drivers and constructors who are ranked higher on odds than their current average points scoring rank and price rank. Green highlighted values indicate that the driver or constructor is probably a good choice as they are predicted (by the betting companies) to do better than their current price or points scoring rank. Red highlighted values indicate the opposite.</p>
                         </div>
                     </section>
             </div>
