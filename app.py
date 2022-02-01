@@ -1,3 +1,4 @@
+from distutils.log import debug
 from os import name
 from flask import Flask, render_template,request, send_from_directory
 import pandas as pd
@@ -11,7 +12,7 @@ SEASON_END = True
 def home():
     if SEASON_END:
         return render_template("season_end.html", name="Fantasy Analysis Coming Soon!")
-    return render_template("index.html", name="Fantasy F1 Analysis Home")
+    return render_template("home.html", name="Fantasy F1 Analysis Home")
 
 @app.route("/team_suggestions/")
 def fantasy_suggestions():
