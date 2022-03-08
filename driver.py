@@ -11,7 +11,11 @@ class Driver:
         self.streak_race = streak_race
         self.odds_value = 0
         self.odds = 'N/A'
+        self.upcoming_odds = 'N/A'
         self.odds_rank = 0
+        self.odds_value = 0
+        self.upcoming_odds_rank = 0
+        self.upcoming_odds_value = 0
         self.price_rank = 0
         self.avg_points = 0
         self.avg_points_rank = 0

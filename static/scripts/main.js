@@ -152,8 +152,17 @@ $(document).ready(function(){
     }
 });
 
+});
 
-
+$(document).ready(function(){
+  $('#btn-grand-prix-bets, #btn-championship-bets').click(function(){
+      $('#btn-grand-prix-bets, #btn-championship-bets').removeClass('primary');
+      $(this).addClass('primary');
+      var selected = $(this).text();
+      $(".gtr-200").hide();
+      $('#' + selected.replace(/ /g,"_")).show();
+  });
+  
 });
 
 
@@ -164,7 +173,6 @@ $(document).ready(function(){
       $(this).addClass('primary');
       update_filtered_news();
   });
-  
 });
 
 
@@ -195,23 +203,23 @@ function update_filtered_news(){
   test = []
 
  
-// Loop through all list items, and hide those who don't match the search query
-for (i = 0; i < li.length; i++) {
-  a = li[i];
-  //console.log(a.getElementsByClassName("news_item_source")[0].textContent, source_filter);
-  if(a.getElementsByClassName("news_item_source")[0].textContent == source_filter || source_filter == "All News"){
-    
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-    } else {
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i];
+    //console.log(a.getElementsByClassName("news_item_source")[0].textContent, source_filter);
+    if(a.getElementsByClassName("news_item_source")[0].textContent == source_filter || source_filter == "All News"){
+      
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      } else {
+        test.push(li[i]);
+      }
+    }else{
       test.push(li[i]);
     }
-  }else{
-    test.push(li[i]);
   }
-  
-}
-divs = $(test).detach();
+
+  divs = $(test).detach();
 }
 
 $(document).keyup(function() { 

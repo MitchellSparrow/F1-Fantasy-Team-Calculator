@@ -70,17 +70,54 @@
                             <p>The following page provides the statistics of the current betting odds of the Formula One drivers and constructors. The table below also shows the driver / constructor current price, as well as their average points that they have achieved for the current season. There are also a few columns which represent the current driver / constructor price rank, points rank and odds rank. </p>
                             <p>The green highlighted values indicate that the odds rank is currently better than the current points or price rank. A red highlighted value indicates that the odds rank is currently worse than the current points or price rank. Currently all of the odds are collected from SkyBet, and can be found <a href="https://m.skybet.com" target="_blank">here</a>. In future we hope to add more betting site data to this page. For more information on how this page works and how to use the data, please refer to the <a href="{{ url_for('explain') }}" >How It Works</a> page.</p>
                             
-                            <h3>Betting Website:</h3>
+                            <h3>Betting Data:</h3>
                             <ul class="actions small">
-                                <li><a class="button primary small">Skybet</a></li>
-                                <li><a class="button small">Other sites coming soon!</a></li>
+                                <li><a id = 'btn-grand-prix-bets' class="button primary small">upcoming grand prix</a></li>
+                                <li><a id = 'btn-championship-bets' class="button small">championship</a></li>
                             </ul>
                 
                             <hr class="major" />
 
                             <!-- Elements -->
-                                
-                                <div id="betting_table_columns" class="row gtr-200">
+
+                            <div id="betting_table_columns">
+                                <div id="upcoming_grand_prix" class=" gtr-200">
+                                    <div class="col-6 col-12-medium">
+                                        <!-- Table -->
+                                            <h3>Driver Odds:</h3>
+                                            <div class="table-wrapper">
+                                                <table class="alt" id="driver_bets_table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Driver Name</th>
+                                                            <th>Current Price</th>
+                                                            <th>Avg Points</th>
+                                                            <th>Betting Odds</th>
+                                                            <th>Price Rank</th>
+                                                            <th>Points Rank</th>
+                                                            <th>Odds Rank</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for i in upcoming_driver_list %}
+                                                        <tr class="odds_row">
+                                                            <td>{{i.name }}</td>
+                                                            <td>{{i.price}}</td>
+                                                            <td>{{i.avg_points}}</td>
+                                                            <td>{{i.upcoming_odds}}</td>
+                                                            <td class = "price_rank">{{i.price_rank}}</td>
+                                                            <td class = "points_rank">{{i.avg_points_rank}}</td>
+                                                            <td class = "odds_rank">{{i.upcoming_odds_rank}}</td>
+                                                        </tr>
+                                                        {%  endfor %}
+                                                    </tbody>
+                                                    
+                                                </table>
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <div style="display: none;" id="championship" class="row gtr-200">
                                     <div class="col-6 col-12-medium">
                                         <!-- Table -->
                                             <h3>Driver Championship Odds:</h3>
@@ -113,14 +150,14 @@
                                                     
                                                 </table>
                                             </div>
-
+    
                                     </div>
                                     <div class="col-6 col-12-medium">
-
-                                         <!-- Table -->
-                                         <h3>Constructor Championship Odds:</h3>
-                                         <div class="table-wrapper">
-                                             <table class="alt" id="constructor_bets_table">
+    
+                                            <!-- Table -->
+                                            <h3>Constructor Championship Odds:</h3>
+                                            <div class="table-wrapper">
+                                                <table class="alt" id="constructor_bets_table">
                                                 <thead>
                                                     <tr>
                                                         <th>Constructor Name</th>
@@ -145,14 +182,20 @@
                                                     </tr>
                                                     {%  endfor %}
                                                 </tbody>
-                                                 
-                                             </table>
-                                         </div>
-
-                                        
-
+                                                    
+                                                </table>
+                                            </div>
                                     </div>
                                 </div>
+
+
+
+
+                            </div>
+                                
+                            
+
+                                
 
                         </div>
                     </section>

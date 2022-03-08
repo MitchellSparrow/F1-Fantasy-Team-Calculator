@@ -45,3 +45,10 @@ Make sure you have cloned the repository and are in the right directory. Then ru
 The HTML page styling was built from a pre existing and free template called Forty by HTML5. This template can be found at the following link:
 
 https://html5up.net/forty
+
+# Future implementation:
+
+Qualifying data:
+
+https://ergast.com/api/f1/2021/drivers/alonso/qualifying.json
+

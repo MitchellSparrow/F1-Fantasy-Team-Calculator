@@ -9,7 +9,7 @@ import pandas as pd
 
 def get_drivers_and_consturctors():
 
-    URL = 'https://fantasy-api.formula1.com/partner_games/f1/players'
+    URL = 'https://fantasy-api.formula1.com/f1/2022/players'
 
     try:
 
@@ -17,26 +17,45 @@ def get_drivers_and_consturctors():
 
         data = result.json()
         players = data['players']
+        players_updated = []
+
+        for player in players:
+            if player["last_name"] != "TBC":
+                players_updated.append(player)
+
+        players = players_updated
+
 
         drivers, constructors, = [], []
 
         [(drivers.append(
                     Driver(player['id'],
-                        player['display_name'],
-                        player['season_score'],
+                        player['first_name'] + " " + player['last_name'],
+                        player['score'],
                         player['price'],
-                        player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                        player['streak_events_progress']['top_ten_in_a_row_race_progress'])) if player['constructor_data'] == None else constructors.append(
+                        0,0
+                        # player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
+                        # player['streak_events_progress']['top_ten_in_a_row_race_progress']
+                        
+                        )) if player['position_abbreviation'] == "DR" else constructors.append(
                     Constructor(player['id'],
-                                player['display_name'],
-                                player['season_score'],
+                                player['first_name'],
+                                player['score'],
                                 player['price'],
-                                player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                                player['streak_events_progress']['top_ten_in_a_row_race_progress']))) for player in players]
+                                0,0
+                                # player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
+                                # player['streak_events_progress']['top_ten_in_a_row_race_progress']
+                                ))) for player in players]
         
-        number_races = len(players[0]["season_prices"])
+        
+        if players[0]["season_prices"] == None:
+            print("Beginning of the season")
+            number_races = 1
+        else:
+            number_races = len(players[0]["season_prices"])
 
     except:
+        print("Failed")
         drivers = []
         constructors = []
         number_races = 0
@@ -52,13 +71,15 @@ def get_betting_data():
     data = result.json()
     drivers = data['drivers_championship']
     constructors = data['constructors_championship']
+    upcoming_gp_drivers = data['upcoming_grand_prix_drivers']['driver_odds']
 
-    driver_bet, constructor_bets, = [], []
+    driver_bet, constructor_bets, upcoming_driver_bet = [], [], []
 
     [(driver_bet.append(Bet(driver['name'],driver['odds']))) for driver in drivers]
     [(constructor_bets.append(Bet(constructor['name'],constructor['odds']))) for constructor in constructors]
+    [(upcoming_driver_bet.append(Bet(driver['name'],driver['odds']))) for driver in upcoming_gp_drivers]
 
-    return [driver_bet, constructor_bets]
+    return [driver_bet, constructor_bets, upcoming_driver_bet]
 
 def get_news():
     URL = "https://formulaoneapi.herokuapp.com/news"

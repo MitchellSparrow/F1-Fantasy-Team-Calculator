@@ -1,12 +1,18 @@
 from distutils.log import debug
 from os import name
+from re import T
 from flask import Flask, render_template,request, send_from_directory
 import pandas as pd
 from data import get_betting_data, get_f1_data, get_drivers_and_consturctors, get_news
+from difflib import SequenceMatcher
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
-SEASON_END = True
+SEASON_END = False
+FIRST_RACE = True
+
+def similar(a, b):
+    return SequenceMatcher(None, a, b).ratio()
 
 @app.route("/")
 def home():
@@ -18,6 +24,9 @@ def home():
 def fantasy_suggestions():
     if SEASON_END:
         return render_template("season_end.html", name="Fantasy Analysis Coming Soon!")
+    elif FIRST_RACE:
+        return render_template("fantasy_suggestions_beg.html", name="Fantasy F1 Team Suggestions")
+
     res = get_drivers_and_consturctors()
     drivers = res[0]
     constructors = res[1]
@@ -57,18 +66,31 @@ def bets():
     bet_data = get_betting_data()
     drivers_bets = bet_data[0]
     constructors_bets = bet_data[1]
+    upcoming_gp_drivers = bet_data[2]
     drivers = res[0]
     constructors = res[1]
 
     for driver_bets in drivers_bets:
         for driver in drivers:
-            if driver.name[2:] in driver_bets.name:
+            if similar(driver.name,driver_bets.name) > 0.5:
+                #print(similar(driver.name,driver_bets.name))
                 driver.odds = driver_bets.odds
                 odds_values = driver.odds.split('/')
                 driver.odds_numerator = int(odds_values[0])
                 driver.odds_denominator = int(odds_values[1])
                 driver.odds_value = int(odds_values[0]) / int(odds_values[1])
             driver.avg_points = round(driver.points / res[2], 1)
+
+    for driver_bets_upcoming in upcoming_gp_drivers:
+        for driver in drivers:
+            if similar(driver.name,driver_bets_upcoming.name) > 0.5:
+            
+                driver.upcoming_odds = driver_bets_upcoming.odds
+                odds_values = driver.upcoming_odds.split('/')
+                driver.upcoming_odds_numerator = int(odds_values[0])
+                driver.upcoming_odds_denominator = int(odds_values[1])
+                driver.upcoming_odds_value = int(odds_values[0]) / int(odds_values[1])
+        
 
     drivers = sorted(drivers, key=lambda x: x.price, reverse=True)
     for i in range(len(drivers)):
@@ -77,6 +99,12 @@ def bets():
     drivers = sorted(drivers, key=lambda x: x.avg_points, reverse=True)
     for i in range(len(drivers)):
         drivers[i].avg_points_rank = i + 1
+
+    drivers = sorted(drivers, key=lambda x: x.upcoming_odds_value, reverse=False)
+    for i in range(len(drivers)):
+        drivers[i].upcoming_odds_rank = i + 1
+
+    upcoming_drivers = drivers
 
     drivers = sorted(drivers, key=lambda x: x.odds_value, reverse=False)
     for i in range(len(drivers)):
@@ -105,7 +133,7 @@ def bets():
         constructors[i].odds_rank = i + 1
 
     x = pd.DataFrame()
-    return render_template("bets.html", name="Bets", driver_list = [ob.__dict__ for ob in drivers], constructor_list = [ob.__dict__ for ob in constructors], data=x.to_html(classes='minimalistBlack'))
+    return render_template("bets.html", name="Bets", driver_list = [ob.__dict__ for ob in drivers], upcoming_driver_list = [ob.__dict__ for ob in upcoming_drivers], constructor_list = [ob.__dict__ for ob in constructors], data=x.to_html(classes='minimalistBlack'))
 
 @app.route("/thanks/")
 def thanks():
@@ -157,6 +185,6 @@ def static_from_root():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=False)
 
 
