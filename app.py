@@ -67,6 +67,7 @@ def bets():
     drivers_bets = bet_data[0]
     constructors_bets = bet_data[1]
     upcoming_gp_drivers = bet_data[2]
+    upcoming_gp_name = bet_data[3]
     drivers = res[0]
     constructors = res[1]
 
@@ -133,7 +134,7 @@ def bets():
         constructors[i].odds_rank = i + 1
 
     x = pd.DataFrame()
-    return render_template("bets.html", name="Bets", driver_list = [ob.__dict__ for ob in drivers], upcoming_driver_list = [ob.__dict__ for ob in upcoming_drivers], constructor_list = [ob.__dict__ for ob in constructors], data=x.to_html(classes='minimalistBlack'))
+    return render_template("bets.html", name="Bets", driver_list = [ob.__dict__ for ob in drivers], upcoming_driver_list = [ob.__dict__ for ob in upcoming_drivers], constructor_list = [ob.__dict__ for ob in constructors], gp_name = upcoming_gp_name, data=x.to_html(classes='minimalistBlack'))
 
 @app.route("/thanks/")
 def thanks():

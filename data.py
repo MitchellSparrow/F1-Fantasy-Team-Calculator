@@ -72,6 +72,7 @@ def get_betting_data():
     drivers = data['drivers_championship']
     constructors = data['constructors_championship']
     upcoming_gp_drivers = data['upcoming_grand_prix_drivers']['driver_odds']
+    upcoming_gp_name = data['upcoming_grand_prix_drivers']['name']
 
     driver_bet, constructor_bets, upcoming_driver_bet = [], [], []
 
@@ -79,7 +80,7 @@ def get_betting_data():
     [(constructor_bets.append(Bet(constructor['name'],constructor['odds']))) for constructor in constructors]
     [(upcoming_driver_bet.append(Bet(driver['name'],driver['odds']))) for driver in upcoming_gp_drivers]
 
-    return [driver_bet, constructor_bets, upcoming_driver_bet]
+    return [driver_bet, constructor_bets, upcoming_driver_bet, upcoming_gp_name]
 
 def get_news():
     URL = "https://formulaoneapi.herokuapp.com/news"
