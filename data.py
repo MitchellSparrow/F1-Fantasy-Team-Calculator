@@ -62,6 +62,13 @@ def get_drivers_and_consturctors():
 
     return [drivers, constructors, number_races]
 
+
+def catch(func, *args, handle=lambda e : e, **kwargs):
+    try:
+        return func(*args, **kwargs)
+    except Exception as e:
+        return handle(e)
+
 def get_betting_data():
 
     URL = "https://formulaoneapi.herokuapp.com/bets"
@@ -76,9 +83,28 @@ def get_betting_data():
 
     driver_bet, constructor_bets, upcoming_driver_bet = [], [], []
 
-    [(driver_bet.append(Bet(driver['name'],driver['odds']))) for driver in drivers]
-    [(constructor_bets.append(Bet(constructor['name'],constructor['odds']))) for constructor in constructors]
-    [(upcoming_driver_bet.append(Bet(driver['name'],driver['odds']))) for driver in upcoming_gp_drivers]
+    for driver in drivers:
+        try:
+            driver_bet.append(Bet(driver['name'],driver['odds']))
+        except:
+            print("Something else went wrong with driver championship bets")
+            continue
+
+    for constructor in constructors:
+        try:
+            constructor_bets.append(Bet(constructor['name'],constructor['odds']))
+        except:
+            print("Something else went wrong with constructor bets")
+            continue
+
+    for driver in upcoming_gp_drivers:
+        try:
+            upcoming_driver_bet.append(Bet(driver['name'],driver['odds']))
+        except:
+            print("Something else went wrong with upcoming driver bets")
+            continue
+
+    # [catch(upcoming_driver_bet.append(Bet(driver['name'],driver['odds']))) for driver in upcoming_gp_drivers ]
 
     return [driver_bet, constructor_bets, upcoming_driver_bet, upcoming_gp_name]
 
