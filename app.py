@@ -9,7 +9,7 @@ from difflib import SequenceMatcher
 app = Flask(__name__, static_folder='static', static_url_path='')
 
 SEASON_END = False
-FIRST_RACE = True
+FIRST_RACE = False
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()

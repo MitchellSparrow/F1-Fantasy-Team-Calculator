@@ -31,20 +31,18 @@ def get_drivers_and_consturctors():
         [(drivers.append(
                     Driver(player['id'],
                         player['first_name'] + " " + player['last_name'],
-                        player['score'],
+                        player['season_score'],
                         player['price'],
-                        0,0
-                        # player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                        # player['streak_events_progress']['top_ten_in_a_row_race_progress']
+                        player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
+                        player['streak_events_progress']['top_ten_in_a_row_race_progress']
                         
                         )) if player['position_abbreviation'] == "DR" else constructors.append(
                     Constructor(player['id'],
                                 player['first_name'],
-                                player['score'],
+                                player['season_score'],
                                 player['price'],
-                                0,0
-                                # player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                                # player['streak_events_progress']['top_ten_in_a_row_race_progress']
+                                player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
+                                player['streak_events_progress']['top_ten_in_a_row_race_progress']
                                 ))) for player in players]
         
         
