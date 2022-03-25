@@ -93,6 +93,28 @@ def bets():
                 driver.upcoming_odds_value = int(odds_values[0]) / int(odds_values[1])
         
 
+    upcoming_drivers = drivers
+
+    for driver in upcoming_drivers:
+        if driver.upcoming_odds == 'N/A':
+            upcoming_drivers.remove(driver)
+
+    upcoming_drivers = sorted(upcoming_drivers, key=lambda x: x.price, reverse=True)
+    for i in range(len(upcoming_drivers)):
+        upcoming_drivers[i].price_rank = i + 1
+    
+    upcoming_drivers = sorted(upcoming_drivers, key=lambda x: x.avg_points, reverse=True)
+    for i in range(len(upcoming_drivers)):
+        upcoming_drivers[i].avg_points_rank = i + 1
+
+    upcoming_drivers = sorted(upcoming_drivers, key=lambda x: x.upcoming_odds_value, reverse=False)
+    for i in range(len(upcoming_drivers)):
+        upcoming_drivers[i].upcoming_odds_rank = i + 1
+
+    for driver in drivers:
+        if driver.odds == 'N/A':
+            drivers.remove(driver)
+
     drivers = sorted(drivers, key=lambda x: x.price, reverse=True)
     for i in range(len(drivers)):
         drivers[i].price_rank = i + 1
@@ -100,12 +122,6 @@ def bets():
     drivers = sorted(drivers, key=lambda x: x.avg_points, reverse=True)
     for i in range(len(drivers)):
         drivers[i].avg_points_rank = i + 1
-
-    drivers = sorted(drivers, key=lambda x: x.upcoming_odds_value, reverse=False)
-    for i in range(len(drivers)):
-        drivers[i].upcoming_odds_rank = i + 1
-
-    upcoming_drivers = drivers
 
     drivers = sorted(drivers, key=lambda x: x.odds_value, reverse=False)
     for i in range(len(drivers)):
@@ -120,6 +136,10 @@ def bets():
                 constructor.odds_denominator = int(odds_values[1])
                 constructor.odds_value = int(odds_values[0]) / int(odds_values[1])
             constructor.avg_points = round(constructor.points / res[2], 1)
+
+    for constructor in constructors:
+        if constructor.odds == 'N/A':
+            constructors.remove(constructor)
 
     constructors = sorted(constructors, key=lambda x: x.price, reverse=True)
     for i in range(len(constructors)):
