@@ -1,8 +1,9 @@
 
 
+
 class Driver:
     '''A class for a Formula One driver'''
-    def __init__(self, id, name, points, price, streak_quali, streak_race):
+    def __init__(self, id, name, points, price, streak_quali, streak_race, imageUrl, teamName, wins, podiums, price_change):
         self.id = id
         self.name = name
         self.price = price
@@ -19,6 +20,12 @@ class Driver:
         self.price_rank = 0
         self.avg_points = 0
         self.avg_points_rank = 0
+        self.imageUrl = imageUrl
+        self.team_name = teamName
+        self.wins = wins
+        self.podiums = podiums
+        self.price_change_data = price_change
 
+        
     def __str__(self):
         return self.name

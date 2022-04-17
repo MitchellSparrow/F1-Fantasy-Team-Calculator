@@ -35,7 +35,7 @@
 
     <div id="wrapper">
         <!-- Header -->
-        <header id="header" class="alt">
+        <header id="header" >
             <a href="{{ url_for('home') }}" class="logo"><strong>F1 Analysis</strong> <span>by Mitchell Sparrow</span></a>
             <nav>
                 <a href="#menu">Menu</a>
@@ -54,6 +54,7 @@
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
             </ul>
         </nav>
+        
         <section class="major">
             <div id="main" class="alt">
                 <!-- One -->
@@ -72,105 +73,90 @@
                         </div>
                     </section>
 
-            </div>
-        </section>
-
-
-        <section>
-            <div class="inner">
-                <h2 style="padding: 0.5em 0 0.5em 0em; " class="content">Search for team suggestions below:</h2>
-            </div>
+                    <section>
+                        <div class="inner" style="padding: 0.5em 0 0.5em 0em; ">
+                            <h2 style="padding: 0.2em 0 0.5em 0em; " class="content">Search for team suggestions below:</h2>
+                            <form name="budget_form" action="/team_suggestions/analysis/" method="POST">
+                                <div class="fields">
+                                    <div class="field half">
+                                        <label for="search">Budget (in million)</label>
+                                        <input type="text" name="budget" id="search" placeholder="e.g. 100"/>
+                                    </div>
+                                    <div class="field half">
+                                        <label for="email">Streak points</label>
+                                        <div style="padding: 0.4em 0 0em 0.2em ;" class="col-6 col-12-small">
+                                            <input type="checkbox" id="demo-copy" name="streaks" checked>
+                                            <label for="demo-copy">Include</label>
+                                        </div>
+                                    </div>
             
-        </section>
-
-        <!-- Search Form -->
-        <section id = "search_form" class="major">
-            <!-- Break -->
-            <div class="inner">
-                <form name="budget_form" action="/team_suggestions/analysis/" method="POST">
-                    <div class="fields">
-                        <div class="field half">
-                            <label for="search">Budget (in million)</label>
-                            <input type="text" name="budget" id="search" placeholder="e.g. 100"/>
-                        </div>
-                        <div class="field half">
-                            <label for="email">Streak points</label>
-                            <div style="padding: 0.4em 0 0em 0.2em ;" class="col-6 col-12-small">
-                                <input type="checkbox" id="demo-copy" name="streaks" checked>
-                                <label for="demo-copy">Include</label>
+                                    <div class="field half">
+                                        <label for="email">Drivers</label>
+                                        <div id="driver_dropdown" class="dropdown" data-control="checkbox-dropdown">
+                                            <label class="dropdown-label">Select</label>
+                                            <div class="dropdown-list">
+                                              <a href="#" data-toggle="check-all" class="dropdown-option">
+                                                Check All   
+                                              </a>
+                                              {% for o in driver_list %}
+                                              <div class="col-6 col-12-small">
+                                                  <input type="checkbox" id="{{ o.name }}" name = 'selected_drivers' value="{{ o.id }}" checked>
+                                                  <label for="{{ o.name }}">{{ o.name }}</label>
+                                              </div>    
+                                              {%  endfor %}
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div class="field half">
+                                        <label for="email">Constructors</label>
+                                        <div id="constructor_dropdown" class="dropdown" data-control="checkbox-dropdown">
+                                            <label class="dropdown-label">Select</label>
+                                            <div class="dropdown-list">
+                                              <a href="#" data-toggle="check-all" class="dropdown-option">
+                                                Check All   
+                                              </a>
+                                              {% for o in constructor_list %}
+                                              <div class="col-6 col-12-small">
+                                                  <input type="checkbox" id="{{ o.name }}" name = 'selected_constructors' value="{{ o.id }}" checked>
+                                                  <label for="{{ o.name }}">{{ o.name }}</label>
+                                              </div>    
+                                              {%  endfor %}
+                                            </div>
+                                          </div>
+                                    </div>
+                                    
+                                </div>
+                                <ul class="actions">
+                                    <div id="search_button">
+                                        <li><input name="budget" type="submit" value="Search" class="primary" onclick="$('#loading').show();" /></li>
+                                    </div>
+                                </ul>
+                            </form>
+                            <div id="table_inner" class="inner">
+                                {{data | safe}}
                             </div>
-                        </div>
-
-                        <div class="field half">
-                            <label for="email">Drivers</label>
-                            <div id="driver_dropdown" class="dropdown" data-control="checkbox-dropdown">
-                                <label class="dropdown-label">Select</label>
-                                <div class="dropdown-list">
-                                  <a href="#" data-toggle="check-all" class="dropdown-option">
-                                    Check All   
-                                  </a>
-                                  {% for o in driver_list %}
-                                  <div class="col-6 col-12-small">
-                                      <input type="checkbox" id="{{ o.name }}" name = 'selected_drivers' value="{{ o.id }}" checked>
-                                      <label for="{{ o.name }}">{{ o.name }}</label>
-                                  </div>    
-                                  {%  endfor %}
+                            <footer id="footer">
+                                <div class="inner">
+                                    <ul class="icons">
+                                        <li><a href="https://github.com/MitchellSparrow/" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                                        <li><a href="https://www.linkedin.com/in/mitchell-sparrow/" target="_blank" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                                        <li><a href="https://www.instagram.com/f1fantasyanalysis/" target="_blank" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+                                    </ul>
+                                    <ul class="copyright">
+                                        <li> <a href="https://www.termsfeed.com/live/983158b2-ed54-4a0f-ab8d-915864e265a3" target="_blank">Privacy Policy</a> </li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+                                    </ul>
                                 </div>
-                              </div>
-                        </div>
-                        <div class="field half">
-                            <label for="email">Constructors</label>
-                            <div id="constructor_dropdown" class="dropdown" data-control="checkbox-dropdown">
-                                <label class="dropdown-label">Select</label>
-                                <div class="dropdown-list">
-                                  <a href="#" data-toggle="check-all" class="dropdown-option">
-                                    Check All   
-                                  </a>
-                                  {% for o in constructor_list %}
-                                  <div class="col-6 col-12-small">
-                                      <input type="checkbox" id="{{ o.name }}" name = 'selected_constructors' value="{{ o.id }}" checked>
-                                      <label for="{{ o.name }}">{{ o.name }}</label>
-                                  </div>    
-                                  {%  endfor %}
-                                </div>
-                              </div>
+                            </footer>
+                        
                         </div>
                         
-                    </div>
-                    <ul class="actions">
-                        <div id="search_button">
-                            <li><input name="budget" type="submit" value="Search" class="primary" onclick="$('#loading').show();" /></li>
-                        </div>
-                    </ul>
-                </form>
-            
+
+                    </section>
+                    
             </div>
             
         </section>
 
-    
-        <section class="major">
-            <div id="table_inner" class="inner">
-                {{data | safe}}
-            </div>
-        </section>
-        
-
-        <!-- Footer -->
-        <footer id="footer">
-            <div class="inner">
-                <ul class="icons">
-                    <li><a href="https://github.com/MitchellSparrow/" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-                    <li><a href="https://www.linkedin.com/in/mitchell-sparrow/" target="_blank" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-                    <li><a href="https://www.instagram.com/f1fantasyanalysis/" target="_blank" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-                </ul>
-                <ul class="copyright">
-                    <li> <a href="https://www.termsfeed.com/live/983158b2-ed54-4a0f-ab8d-915864e265a3" target="_blank">Privacy Policy</a> </li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-                </ul>
-            </div>
-        </footer>
-
-        
     </div>
 
     <!-- Scripts -->

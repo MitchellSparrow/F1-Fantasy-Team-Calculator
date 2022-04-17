@@ -34,7 +34,12 @@ def get_drivers_and_consturctors():
                         player['season_score'],
                         player['price'],
                         player['streak_events_progress']['top_ten_in_a_row_qualifying_progress'],
-                        player['streak_events_progress']['top_ten_in_a_row_race_progress']
+                        player['streak_events_progress']['top_ten_in_a_row_race_progress'],
+                        player['profile_image']['url'],
+                        player['team_abbreviation'],
+                        player['driver_data']['wins'],
+                        player['driver_data']['podiums'],
+                        player['season_prices'],
                         
                         )) if player['position_abbreviation'] == "DR" else constructors.append(
                     Constructor(player['id'],

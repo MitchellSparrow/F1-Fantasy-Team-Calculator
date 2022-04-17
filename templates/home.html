@@ -25,16 +25,24 @@
 
     gtag('config', 'UA-156393130-2');
     </script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
 	<noscript><link rel="stylesheet" href="../static/styles/noscript.css" /></noscript>
 
 </head>
 
-<body class = "main_body">
+<body id = "" style="padding: 0em 0 2em 0 ; ">
+
+    
     <div id="loading">
         <img id="loading-image" src="{{ url_for('static',filename='images/Rocket.gif') }}" alt="Loading..." />
     </div>
 
-    <div id="wrapper">
+    <div id="wrapper" >
+        <!-- <div class = 'major'>
+            <div class = 'home_image'></div>
+        </div> -->
         <!-- Header -->
         <header id="header" class="alt">
             <a href="{{ url_for('home') }}" class="logo"><strong>F1 Analysis</strong> <span>by Mitchell Sparrow</span></a>
@@ -57,7 +65,7 @@
         </nav>
 
         <!-- Banner -->
-        <section id="banner" class="major">
+        <section id="banner" >
             <div class="inner">
                 <header class="major">
                     <h1>Your favorite F1 fantasy analysis tool</h1>
@@ -84,25 +92,23 @@
             </div>
         </section>
 
-        <section class="major">
-            <div class="inner">
-                <h2>Select a tool:</h2>
+        <section class="major ">
+            <div class="inner ">
+                <h2>Tools:</h2>
                 <div class="testimonial-grid"> 
                 <div class="testimonial grid-col-span-2 flow bg-primary-400 quote text-neutral-100">
                     <a  href="{{ url_for('fantasy_suggestions') }}">
                         <article class="">
                             <div class="flex">
                                 <div>
-                                    <img style="width: 3em;" src="{{ url_for('static',filename='images/large_logo.png') }}" >
+                                    <img  src="{{ url_for('static',filename='images/large_logo.png') }}" >
                                 </div>
                                 <div>
                                     <h2>Fantasy Suggestions</h2>
                                     <!-- <p >F1 Fantasy Analysis</p> -->
                                 </div>
                             </div>
-                            <p style="font-size: var(--fs-500); line-height: 1.2; opacity: 0.7;">
-                            A tool to help you construct better fantasy Formula One teams. It works be listing all the best possible combinations of drivers and constructors on average which fit in your budget
-                            </p>
+                            
                         </article>
                     </a>
                 </div>
@@ -111,16 +117,14 @@
                         <article >
                             <div class="flex">
                                 <div>
-                                    <img style="width: 3em;" src="{{ url_for('static',filename='images/large_logo.png') }}" >
+                                    <img  src="{{ url_for('static',filename='images/large_logo.png') }}" >
                                 </div>
                                 <div>
                                     <h2>F1 Betting Odds</h2>
                                     <!-- <p >F1 Fantasy Analysis</p> -->
                                 </div>
                             </div>
-                            <p style="font-size: var(--fs-500); line-height: 1.2; opacity: 0.7;">
-                            A tool which shows you the latest betting odds and other statistics and comparisons for the upcoming Grand Prix as well as the overall championship odds.
-                            </p>
+                            
                         </article>
                     </a>
                 </div>
@@ -129,16 +133,14 @@
                         <article >
                             <div class="flex">
                                 <div>
-                                    <img style="width: 3em;" src="{{ url_for('static',filename='images/large_logo.png') }}" >
+                                    <img src="{{ url_for('static',filename='images/large_logo.png') }}" >
                                 </div>
                                 <div>
                                     <h2 class="text-secondary-400">Latest F1 News</h2>
                                     <!-- <p >F1 Fantasy Analysis</p> -->
                                 </div>
                             </div>
-                            <p style="font-size: var(--fs-500); line-height: 1.2; opacity: 0.7;">
-                                A tool that allows you to see all of the latest Formula One based news from multiple different news sites.
-                            </p>
+                            
                         </article>
                     </a>
                 </div>
@@ -147,37 +149,18 @@
                         <article >
                             <div class="flex">
                                 <div>
-                                    <img style="width: 3em;" src="{{ url_for('static',filename='images/large_logo.png') }}" >
+                                    <img  src="{{ url_for('static',filename='images/large_logo.png') }}" >
                                 </div>
                                 <div>
                                     <h2>Contact</h2>
                                     <!-- <p >F1 Fantasy Analysis</p> -->
                                 </div>
                             </div>
-                            <p style="font-size: var(--fs-500); line-height: 1.2; opacity: 0.7;">
-                                Do you have any feature requests? Or would you just like to tell me how you beat your friends in Fantasy Formula One? Whatever the cause, head here to get in touch.
-                            </p>
+                           
                         </article>
                     </a>
                 </div>
-                <div class="testimonial flow bg-neutral-100 text-secondary-400">
-                    <a href="{{ url_for('explain') }}">
-                        <article >
-                            <div class="flex">
-                                <div>
-                                    <img style="width: 3em;" src="{{ url_for('static',filename='images/large_logo.png') }}" >
-                                </div>
-                                <div>
-                                    <h2 class="text-secondary-400">How It Works</h1>
-                                    <!-- <p >F1 Fantasy Analysis</p> -->
-                                </div>
-                            </div>
-                            <p style="font-size: var(--fs-500); line-height: 1.2; opacity: 0.7;">
-                                Having a little trouble understanding how the website or tools work? <br /> <br />  Thats okay! Click here to understand more. <br /> <br /> This page contains details on exactly how each of the tools work and how to take full advantage of them so that you can perform better at Fantasy Formula One. 
-                            </p>
-                        </article>
-                    </a>
-                </div>
+               
                 
             </div>
             
@@ -185,32 +168,165 @@
         </section>
 
 
-        <!-- <section class="major">
-            <div id="main" class="alt">
-                
-                    <section  id="one" class="major">
-                        <div class="inner" style="padding-top: 0.5em;">
-                            <h2>Select a tool:</h2>
-                            <div class="box alt">
-                                <div id="home_images_row" class="row gtr-50 gtr-uniform">
-                                    <div  class="col-4"><span class="image fit" id="image_home_left" ><a href="{{ url_for('fantasy_suggestions') }}"> <img class="home_images" src="{{url_for('static', filename='images/4.png')}}" alt="" /></a> </span></div>
-                                    <div class="col-4"><span class="image fit" id="image_home_middle" ><a href="{{ url_for('bets') }}"> <img class="home_images" src="{{url_for('static', filename='images/5.png')}}" alt="" /></a></span></div>
-                                    <div class="col-4"><span class="image fit" id="image_home_right"  ><a href="{{ url_for('news') }}"> <img class="home_images" src="{{url_for('static', filename='images/6.png')}}" alt="" /></a></span></div>
-                                </div>
-                            </div>
-                            <h2>Explore other pages:</h2>
-                            <div class="box alt">
-                                <div id="home_images_row" class="row gtr-50 gtr-uniform">
-                                    <div class="col-4"><span class="image fit" id="image_home_left"><a href="{{ url_for('explain') }}"> <img class="home_images" src="{{url_for('static', filename='images/7.png')}}" alt="" /></a> </span></div>
-                                    <div class="col-4"><span class="image fit" id="image_home_middle" ><a href="{{ url_for('about') }}"> <img class="home_images" src="{{url_for('static', filename='images/8.png')}}" alt="" /></a></span></div>
-                                    <div class="col-4"><span class="image fit"  id="image_home_right"><a href="{{ url_for('contact') }}"> <img class="home_images" src="{{url_for('static', filename='images/9.png')}}" alt="" /></a></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
 
+        <section class="major">
+            <div class="inner">
+                <h2>Drivers:</h2>
+                <div class="driver-grid"> 
+
+                {% for i in driver_list %}
+                <div class="driver grid-col-span-2 flow {{ i.team_name }} text-neutral-100 driver-element-article">
+                    
+                        <article class="">
+                            <div >
+                                <h2>{{ i.name }}</h2>
+                                <!-- <p >F1 Fantasy Analysis</p> -->
+                            </div >
+                            <div class="driver-element-grid">
+                                <div class="img-element">
+                                    <img src= {{ i.imageUrl }} >
+                                </div>
+                                
+                                <div class = 'driver-stats'>
+                                    <div class="stat">
+                                        <p class="stat-left">
+                                            Points:
+                                            <span class="stat-right">
+                                                {{ i.points }}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    
+
+                                    <div class="stat">
+                                        <p class="stat-left">
+                                            Current Price:
+                                            <span class="stat-right">
+                                                {{ i.price }}
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                    <div class="stat">
+                                        <p class="stat-left">
+                                            Price Data:
+                                        </p>
+                                    </div>
+
+                                    <div class="price-chart">
+                                        <canvas id = {{i.imageUrl}} class="driver-chart"></canvas>
+                                    </div>
+
+                                    <script>
+                                        var jsonfile = {{i.price_change_data|tojson}};
+                                            
+                                        var id = '{{i.imageUrl}}';
+                                        
+
+                                        var labels = jsonfile.map(function(e) {
+                                            return e.game_period_id;
+                                        });
+                                        var data = jsonfile.map(function(e) {
+                                            return e.price;
+                                        });
+
+                                        var ctx = document.getElementById(id).getContext('2d');
+
+                                        Chart.defaults.global.legend.display = false;
+
+                                        function graphColor (data){
+                                            if (data[0] <= data[data.length-1]){
+                                                return 'green';
+                                            }
+                                            else{
+                                                return 'red';
+                                            }
+                                        }
+
+                                        
+
+                                        
+
+                                        var myChart = new Chart(ctx, {
+                                        type: "line",
+                                        data: {
+                                            labels: labels,
+                                            datasets: [{
+                                            data: data,
+                                            pointBackgroundColor: graphColor(data),
+                                            borderColor: graphColor(data),
+                                            fill: false
+                                            }],
+                                        },
+                                        
+                                        options: {
+                                            tooltips: {
+                                                displayColors: false,
+                                                callbacks: {
+                                                    title: function(tooltipItems, data) { 
+                                                        return '';
+                                                    }
+                                                }
+                                            },
+                                            layout: {
+                                                padding: {
+                                                    top:10,
+                                                    bottom:10,
+                                                    left: 10,
+                                                    right: 10
+                                                }
+                                            },
+                                            scales: {
+                                                xAxes: [{
+                                                    display:false
+                                                }],
+                                                yAxes: [{
+                                                    display:false
+                                                }]
+                                            }
+                                        }
+                                        });
+                                    </script>
+                                    
+                                    <div class="stat">
+                                        <p class="stat-left">
+                                            Streak Quali:
+                                            <span class="stat-right">
+                                                {{ i.streak_quali }}
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                    <div class="stat">
+                                        <p class="stat-left">
+                                            Streak Race:
+                                            <span class="stat-right">
+                                                {{ i.streak_race }}
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                    <div style="padding-top: 10px;">
+                                       
+                                    </div>
+                                    
+                                    
+                                </div>
+                                
+
+                            </div>
+
+                            <!-- <canvas id="myChart" style="width:100%;max-width:700px"></canvas> -->
+                            
+                        </article>
+                    
+                </div>
+                {%  endfor %}
+                
             </div>
-        </section> -->
+            
+            </div>
+        </section>
 
         
 

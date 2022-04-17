@@ -18,7 +18,9 @@ def similar(a, b):
 def home():
     if SEASON_END:
         return render_template("season_end.html", name="Fantasy Analysis Coming Soon!")
-    return render_template("home.html", name="Fantasy F1 Analysis Home")
+    res = get_drivers_and_consturctors()
+    drivers = res[0]
+    return render_template("home.html", name="Fantasy F1 Analysis Home", driver_list = [ob.__dict__ for ob in drivers])
 
 @app.route("/team_suggestions/")
 def fantasy_suggestions():

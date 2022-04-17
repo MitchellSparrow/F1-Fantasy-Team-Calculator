@@ -227,8 +227,150 @@ $(document).keyup(function() {
 });
 
 
+function graphColor (data){
+  if (data[0] <= data[data.length-1]){
+    return 'green';
+  }
+  else{
+    return 'red';
+  }
+}
+
+var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+var yValues = [7,8,8,9,9,9,10,11,14,14,6];
+
+function linechart(id) {
+  return new Chart(id, {
+    type: "line",
+    legend: {display: false},
+    data: {
+      labels: xValues,
+      datasets: [{
+        //backgroundColor: "rgba(0,0,0,1.0)",
+        //borderColor: "rgba(0,0,0,0.1)",
+        data: yValues,
+  
+        borderColor: graphColor(yValues),
+        pointBackgroundColor: 'rgba(153, 124, 194, 0.5)',
+        fill: false
+      }],
+      
+    },
+    
+    options: {
+      legend: {
+        display: false
+     },
+      scales: {
+          xAxes: [{
+  
+            display:false
+              // gridLines: {
+              //     display:false
+              // }
+          }],
+          yAxes: [{
+  
+            display:false
+              // gridLines: {
+              //     display:false
+              // }   
+          }]
+      }
+  }
+  });
+}
 
 
+Chart.defaults.global.legend.display = false;
+
+
+window.onload = function() {
+  var charts = document.getElementsByClassName("driver-chart2");
+
+  for (chart of charts) {
+    var ctx = chart.getContext('2d');
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          //backgroundColor: "rgba(0,0,0,1.0)",
+          //borderColor: "rgba(0,0,0,0.1)",
+          data: yValues,
+          pointBackgroundColor: graphColor(yValues),
+          borderColor: graphColor(yValues),
+          fill: false
+        }],
+        
+      },
+      
+      options: {
+        layout: {
+          padding: {
+              // Any unspecified dimensions are assumed to be 0                     
+              top:10,
+              bottom:10,
+              left: 10,
+              right: 10
+          }
+      },
+        scales: {
+            xAxes: [{
+
+              display:false
+                // gridLines: {
+                //     display:false
+                // }
+            }],
+            yAxes: [{
+
+              display:false
+                // gridLines: {
+                //     display:false
+                // }   
+            }]
+        }
+    }
+    });
+  }
+}
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      //backgroundColor: "rgba(0,0,0,1.0)",
+      //borderColor: "rgba(0,0,0,0.1)",
+      data: yValues,
+
+      borderColor: graphColor(yValues),
+      fill: false
+    }],
+    
+  },
+  
+  options: {
+    scales: {
+        xAxes: [{
+
+          display:false
+            // gridLines: {
+            //     display:false
+            // }
+        }],
+        yAxes: [{
+
+          display:false
+            // gridLines: {
+            //     display:false
+            // }   
+        }]
+    }
+}
+});
 
 
 

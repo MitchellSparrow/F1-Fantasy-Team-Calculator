@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fantasy Formula One Team Analysis | F1 Fantasy Analysis</title>
+    <meta name="description" content="A free Fantasy Formula One team suggestion application which can help you perform better">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Mitchell Sparrow">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="{{ url_for('static',filename='images/large_logo.png') }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="200">
+    <meta property="og:image:height" content="200">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/small_logo.png') }}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/medium_logo.png') }}" sizes="32x32">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}"  />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156393130-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-156393130-2');
+    </script>
+	<noscript><link rel="stylesheet" href="../static/styles/noscript.css" /></noscript>
+
+</head>
+
+<body class = "main_body">
+
+    <div id="loading">
+        <img id="loading-image" src="{{ url_for('static',filename='images/Rocket.gif') }}" alt="Loading..." />
+    </div>
+
+    <div id="wrapper">
+        <!-- Header -->
+        <header id="header" class="alt">
+            <a href="{{ url_for('home') }}" class="logo"><strong>F1 Analysis</strong> <span>by Mitchell Sparrow</span></a>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('fantasy_suggestions') }}">F1 Fantasy Team Suggestions</a></li>
+                <li><a href="{{ url_for('bets') }}">F1 Betting Data</a></li>
+                <li><a href="{{ url_for('news') }}">Latest F1 News</a></li>
+                <li><a href="{{ url_for('explain') }}">How it works</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Banner -->
+        <section id="banner" class="major">
+            <div class="inner">
+                <header class="major">
+                    <h1>Your favorite F1 fantasy analysis tool</h1>
+                </header>
+                <div class="content">
+                    <p>A site to help you select better F1 fantasy teams<br />
+                    so that you never loose another bet with your mates.</p>
+                    <ul class="actions">
+                        <li><a href="{{ url_for('explain') }}" class="button next scrolly">How it works</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Banner -->
+        <section  class="major">
+            <div class="inner">
+                
+                <div class="content">
+                    <p>Welcome to F1 Fantasy Analysis! We are a website that provides you with some useful Formula One Fantasy tools so that you can make better choices for your fantasy team. We have a number of tools available which can be selected below! Each tool has an explanation on the page itself, however for more information please refer to our How It Works page <a href="{{ url_for('explain') }}" >here</a>. Happy analysis and good luck!</p>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="major">
+            <div class="inner">
+                <h2>Select a tool:</h2>
+                <div class="testimonial-grid"> 
+                <div class="testimonial grid-col-span-2 flow bg-primary-400 quote text-neutral-100">
+                    <a  href="{{ url_for('fantasy_suggestions') }}">
+                        <article class="">
+                            <div class="flex">
+                                <div>
+                                    <img style="width: 3em;" src="{{ url_for('static',filename='images/large_logo.png') }}" >
+                                </div>
+                                <div>
+                                    <h2>Fantasy Suggestions</h2>
+                                    <!-- <p >F1 Fantasy Analysis</p> -->
+                                </div>
+                            </div>
+                            <p style="font-size: var(--fs-500); line-height: 1.2; opacity: 0.7;">
+                            A tool to help you construct better fantasy Formula One teams. It works be listing all the best possible combinations of drivers and constructors on average which fit in your budget
+                            </p>
+                        </article>
+                    </a>
+                </div>
+                <div class="testimonial flow bg-secondary-400 text-neutral-100">
+                    <a href="{{ url_for('bets')}}">
+                        <article >
+                            <div class="flex">
+                                <div>
+                                    <img style="width: 3em;" src="{{ url_for('static',filename='images/large_logo.png') }}" >
+                                </div>
+                                <div>
+                                    <h2>F1 Betting Odds</h2>
+                                    <!-- <p >F1 Fantasy Analysis</p> -->
+                                </div>
+                            </div>
+                            <p style="font-size: var(--fs-500); line-height: 1.2; opacity: 0.7;">
+                            A tool which shows you the latest betting odds and other statistics and comparisons for the upcoming Grand Prix as well as the overall championship odds.
+                            </p>
+                        </article>
+                    </a>
+                </div>
+                <div class="testimonial flow bg-neutral-100 text-secondary-400">
+                    <a href="{{ url_for('news')}}">
+                        <article >
+                            <div class="flex">
+                                <div>
+                                    <img style="width: 3em;" src="{{ url_for('static',filename='images/large_logo.png') }}" >
+                                </div>
+                                <div>
+                                    <h2 class="text-secondary-400">Latest F1 News</h2>
+                                    <!-- <p >F1 Fantasy Analysis</p> -->
+                                </div>
+                            </div>
+                            <p style="font-size: var(--fs-500); line-height: 1.2; opacity: 0.7;">
+                                A tool that allows you to see all of the latest Formula One based news from multiple different news sites.
+                            </p>
+                        </article>
+                    </a>
+                </div>
+                <div class="testimonial grid-col-span-2 flow bg-secondary-500 text-neutral-100">
+                    <a href="{{ url_for('contact') }}">
+                        <article >
+                            <div class="flex">
+                                <div>
+                                    <img style="width: 3em;" src="{{ url_for('static',filename='images/large_logo.png') }}" >
+                                </div>
+                                <div>
+                                    <h2>Contact</h2>
+                                    <!-- <p >F1 Fantasy Analysis</p> -->
+                                </div>
+                            </div>
+                            <p style="font-size: var(--fs-500); line-height: 1.2; opacity: 0.7;">
+                                Do you have any feature requests? Or would you just like to tell me how you beat your friends in Fantasy Formula One? Whatever the cause, head here to get in touch.
+                            </p>
+                        </article>
+                    </a>
+                </div>
+                <div class="testimonial flow bg-neutral-100 text-secondary-400">
+                    <a href="{{ url_for('explain') }}">
+                        <article >
+                            <div class="flex">
+                                <div>
+                                    <img style="width: 3em;" src="{{ url_for('static',filename='images/large_logo.png') }}" >
+                                </div>
+                                <div>
+                                    <h2 class="text-secondary-400">How It Works</h1>
+                                    <!-- <p >F1 Fantasy Analysis</p> -->
+                                </div>
+                            </div>
+                            <p style="font-size: var(--fs-500); line-height: 1.2; opacity: 0.7;">
+                                Having a little trouble understanding how the website or tools work? <br /> <br />  Thats okay! Click here to understand more. <br /> <br /> This page contains details on exactly how each of the tools work and how to take full advantage of them so that you can perform better at Fantasy Formula One. 
+                            </p>
+                        </article>
+                    </a>
+                </div>
+                
+            </div>
+            
+            </div>
+        </section>
+
+
+        <!-- <section class="major">
+            <div id="main" class="alt">
+                
+                    <section  id="one" class="major">
+                        <div class="inner" style="padding-top: 0.5em;">
+                            <h2>Select a tool:</h2>
+                            <div class="box alt">
+                                <div id="home_images_row" class="row gtr-50 gtr-uniform">
+                                    <div  class="col-4"><span class="image fit" id="image_home_left" ><a href="{{ url_for('fantasy_suggestions') }}"> <img class="home_images" src="{{url_for('static', filename='images/4.png')}}" alt="" /></a> </span></div>
+                                    <div class="col-4"><span class="image fit" id="image_home_middle" ><a href="{{ url_for('bets') }}"> <img class="home_images" src="{{url_for('static', filename='images/5.png')}}" alt="" /></a></span></div>
+                                    <div class="col-4"><span class="image fit" id="image_home_right"  ><a href="{{ url_for('news') }}"> <img class="home_images" src="{{url_for('static', filename='images/6.png')}}" alt="" /></a></span></div>
+                                </div>
+                            </div>
+                            <h2>Explore other pages:</h2>
+                            <div class="box alt">
+                                <div id="home_images_row" class="row gtr-50 gtr-uniform">
+                                    <div class="col-4"><span class="image fit" id="image_home_left"><a href="{{ url_for('explain') }}"> <img class="home_images" src="{{url_for('static', filename='images/7.png')}}" alt="" /></a> </span></div>
+                                    <div class="col-4"><span class="image fit" id="image_home_middle" ><a href="{{ url_for('about') }}"> <img class="home_images" src="{{url_for('static', filename='images/8.png')}}" alt="" /></a></span></div>
+                                    <div class="col-4"><span class="image fit"  id="image_home_right"><a href="{{ url_for('contact') }}"> <img class="home_images" src="{{url_for('static', filename='images/9.png')}}" alt="" /></a></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+            </div>
+        </section> -->
+
+        
+
+         <!-- Footer -->
+         <footer style="padding: 2em 0 0 0 ;" id="footer">
+            <div class="inner">
+                <ul class="icons">
+                    <li><a href="https://github.com/MitchellSparrow/" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/mitchell-sparrow/" target="_blank" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                    <li><a href="https://www.instagram.com/f1fantasyanalysis/" target="_blank" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li> <a href="https://www.termsfeed.com/live/983158b2-ed54-4a0f-ab8d-915864e265a3" target="_blank">Privacy Policy</a> </li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+                </ul>
+            </div>
+        </footer>
+
+        
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='scripts/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/jquery.scrolly.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/jquery.scrollex.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/browser.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/breakpoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/util.js') }}" ></script>
+    <script  src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+    <script  src="{{ url_for('static', filename='scripts/main2.js') }}"></script>
+
+
+</body>
+
+
+</html>
