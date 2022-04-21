@@ -15,7 +15,7 @@
     <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/small_logo.png') }}" sizes="16x16">
     <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/medium_logo.png') }}" sizes="32x32">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}"  />
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css', version='42') }}"  />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156393130-2"></script>
     <script>
@@ -128,8 +128,8 @@
     <script src="{{ url_for('static', filename='scripts/browser.min.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/breakpoints.min.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/util.js') }}" ></script>
-    <script  src="{{ url_for('static', filename='scripts/main.js') }}"></script>
-    <script  src="{{ url_for('static', filename='scripts/main2.js') }}"></script>
+    <script  src="{{ url_for('static', filename='scripts/main.js', version='42') }}"></script>
+    <script  src="{{ url_for('static', filename='scripts/main2.js', version='42') }}"></script>
 
 
 </body>
