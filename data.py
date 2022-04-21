@@ -40,6 +40,11 @@ def get_drivers_and_consturctors():
                         player['driver_data']['wins'],
                         player['driver_data']['podiums'],
                         player['season_prices'],
+                        player['driver_data']['place_of_birth'],
+                        player['driver_data']['poles'],
+                        player['driver_data']['fastest_laps'],
+                        player['driver_data']['best_finish'],
+                        player['driver_data']['best_finish_count'],
                         
                         )) if player['position_abbreviation'] == "DR" else constructors.append(
                     Constructor(player['id'],

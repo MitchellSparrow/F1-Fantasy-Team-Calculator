@@ -14,7 +14,6 @@
     <meta property="og:image:height" content="200">
     <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/small_logo.png') }}" sizes="16x16">
     <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/medium_logo.png') }}" sizes="32x32">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/table.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}"/>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156393130-2"></script>
@@ -132,10 +131,22 @@
                                     </div>
                                 </ul>
                             </form>
-                            <div id="table_inner" class="inner">
-                                {{data | safe}}
+                            {% if data|length > 180 %}
+
+                            <div id = 'table_inner' class="table-wrapper">
+                              
+                                <table class="alt" >
+                                    {{data | safe}}
+                                </table>
+                                
                             </div>
-                            <footer id="footer">
+
+                            {% else %}
+
+                            <div style="padding-top:30px"></div>
+
+                            {% endif %}
+                            <footer style="padding: 2em 0 0 0 ;" id="footer">
                                 <div class="inner">
                                     <ul class="icons">
                                         <li><a href="https://github.com/MitchellSparrow/" target="_blank" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>

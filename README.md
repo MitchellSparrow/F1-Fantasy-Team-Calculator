@@ -46,9 +46,5 @@ The HTML page styling was built from a pre existing and free template called For
 
 https://html5up.net/forty
 
-# Future implementation:
 
-Qualifying data:
-
-https://ergast.com/api/f1/2021/drivers/alonso/qualifying.json
 

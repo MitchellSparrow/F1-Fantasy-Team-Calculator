@@ -333,4 +333,290 @@
 
 			});
 
+		
+		
+		
+
+		// Menu.
+		var $popupDetailsArray = $('.popup-details'),
+			$popupDetailsInner;
+
+		for(popupDetails of $popupDetailsArray){
+			$popupDetails = $(popupDetails);
+
+			 $popupDetails.wrapInner('<div class="inner"></div>');
+		
+			 $popupDetailsInner = $popupDetails.children('.inner');
+			 $popupDetails._locked = false;
+	 
+			 
+	 
+			 $popupDetails._lock = function() {
+	 
+				 if ($popupDetails._locked)
+					 return false;
+	 
+				 $popupDetails._locked = true;
+	 
+				 window.setTimeout(function() {
+					 $popupDetails._locked = false;
+				 }, 350);
+	 
+				 return true;
+	 
+			 };
+	 
+			 
+	 
+			 $popupDetails._show = function() {
+	 
+				 if ($popupDetails._lock())
+					 $body.addClass('is-popup-details-visible');
+	 
+			 };
+	 
+			 $popupDetails._hide = function() {
+	 
+				 if ($popupDetails._lock())
+					 $body.removeClass('is-popup-details-visible');
+			 };
+	 
+			 $popupDetails._toggle = function() {
+				 if ($popupDetails._lock())
+					 $body.toggleClass('is-popup-details-visible');
+	 
+			 };
+	 
+			 $popupDetailsInner
+				 .on('click', function(event) {
+					 event.stopPropagation();
+				 })
+				 .on('click', 'a', function(event) {
+	 
+					 var href = $(this).attr('href');
+	 
+					 event.preventDefault();
+					 event.stopPropagation();
+	 
+					 // Hide.
+						 $popupDetails._hide();
+	 
+					 // Redirect.
+						 window.setTimeout(function() {
+							 window.location.href = href;
+						 }, 250);
+	 
+				 });
+	 
+			 $popupDetails
+				 .appendTo($body)
+				 .on('click', function(event) {
+					 event.stopPropagation();
+					 event.preventDefault();
+	 
+					 $body.removeClass('is-popup-details-visible');
+	 
+				 })
+				 .append('<a class="close" href="#popup-details">Close</a>');
+
+
+
+
+		}
+		
+		
+
+		
+
+
+		
+
+		// $body
+		// 	.on('click', 'a[href="#popup-details"]', function(event) {
+		// 		console.log("clicked2");
+		// 		event.stopPropagation();
+		// 		event.preventDefault();
+
+		// 		// Toggle.
+		// 			$popupDetails._toggle();
+
+		// 	})
+		// 	.on('click', function(event) {
+
+		// 		// Hide.
+		// 			$popupDetails._hide();
+
+		// 	})
+		// 	.on('keydown', function(event) {
+
+		// 		// Hide on escape.
+		// 			if (event.keyCode == 27)
+		// 				$popupDetails._hide();
+
+		// 	});
+
+			var popupChart;
+
+			$(document).on('click', '.driver', function(event) {
+				// console.log($popupDetails);
+				
+				var obj = JSON.parse(event.currentTarget.id.replace(/\'/g, '"'));
+
+				console.log(obj);
+
+
+				$("#popup-name").text(obj.name);
+				$("#popup-points").text(obj.points);
+				$("#popup-price").text(obj.price);
+				$("#popup-sr").text(obj.streak_race);
+				$("#popup-sq").text(obj.streak_quali);
+				$("#popup-image").attr('src', obj.imageUrl);
+				$("#popup-wins").text(obj.wins);
+				$("#popup-podiums").text(obj.podiums);
+				$("#popup-poles").text(obj.poles);
+				$("#popup-best-finish").text(obj.best_finish);
+				$("#popup-best-finish-count").text(obj.best_finish_count);
+				$("#popup-fastest-laps").text(obj.fastest_laps);
+				$("#popup-place-of-birth").text(obj.place_of_birth);
+
+
+
+				
+				var labels = obj.price_change_data.map(function(e) {
+					return e.game_period_id;
+				});
+				var data = obj.price_change_data.map(function(e) {
+					return e.price;
+				});
+
+				var ctx = $('#popup-price-chart');
+
+				Chart.defaults.global.legend.display = false;
+
+				function graphColor (data){
+					if (data[0] <= data[data.length-1]){
+						return 'green';
+					}
+					else{
+						return 'red';
+					}
+				}
+
+				function graphColorRGBA (data){
+					if (data[0] <= data[data.length-1]){
+						return 'rgba(0,128,0,0.2)';
+					}
+					else{
+						return 'rgba(255,0,0,0.2)';
+					}
+				}
+
+				if (popupChart) {
+					popupChart.destroy();
+				  }
+
+				popupChart = new Chart(ctx, {
+					type: "line",
+					data: {
+						labels: labels,
+						datasets: [{
+						data: data,
+						pointBackgroundColor: graphColor(data),
+						borderColor: graphColor(data),
+						backgroundColor: graphColorRGBA(data),
+						fill: true,
+						}],
+					},
+					
+					options: {
+						responsive: true,
+						maintainAspectRatio: false,
+						tooltips: {
+							displayColors: true,
+							callbacks: {
+								title: function(tooltipItems, data) { 
+									return '';
+								}
+							}
+						},
+						layout: {
+							padding: {
+								top:10,
+								bottom:10,
+								left: 10,
+								right: 10
+							}
+						},
+						scales: {
+						
+							xAxes: [{
+								display:true,
+								// gridLines: {
+								// 	zeroLineColor: '#ffffff',
+								// 	color: '#ffffff'
+								// }
+								scaleLabel: {
+									display: true,
+									labelString: '2022 Race Index',
+									fontSize: 16,
+									fontColor: '#1e2021',
+									fontFamily: "Source Sans Pro",
+									fontStyle: 'bold'
+								  }
+								
+							}],
+
+							yAxes: [{
+								display:true,
+								// gridLines: {
+								// 	zeroLineColor: '#ffffff',
+								// 	color: '#ffffff'
+								// }
+							}]
+						}
+					}
+				});
+
+
+
+
+
+				event.stopPropagation();
+				event.preventDefault();
+
+				// Toggle.
+				$popupDetails._toggle();
+
+			})
+			.on('click', function(event) {
+
+				// Hide.
+				if (popupChart) {
+					popupChart.destroy();
+				  }
+					$popupDetails._hide();
+
+			})
+			.on('keydown', function(event) {
+
+				// Hide on escape.
+				if (popupChart) {
+					popupChart.destroy();
+				  }
+					if (event.keyCode == 27)
+						$popupDetails._hide();
+
+			});
+		
+
+		
+
+		
+
+		
+
 })(jQuery);
+
+
+
+

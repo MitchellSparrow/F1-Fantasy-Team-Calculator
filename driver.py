@@ -3,7 +3,7 @@
 
 class Driver:
     '''A class for a Formula One driver'''
-    def __init__(self, id, name, points, price, streak_quali, streak_race, imageUrl, teamName, wins, podiums, price_change):
+    def __init__(self, id, name, points, price, streak_quali, streak_race, imageUrl, teamName, wins, podiums, price_change, birthPlace, poles, fastestLaps, bestFinish, bestFinishCount):
         self.id = id
         self.name = name
         self.price = price
@@ -25,6 +25,12 @@ class Driver:
         self.wins = wins
         self.podiums = podiums
         self.price_change_data = price_change
+        self.place_of_birth = birthPlace
+        self.poles = poles
+        self.fastest_laps = fastestLaps
+        self.best_finish = bestFinish
+        self.best_finish_count = bestFinishCount
+        
 
         
     def __str__(self):

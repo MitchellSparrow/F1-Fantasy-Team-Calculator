@@ -40,9 +40,10 @@
     </div>
 
     <div id="wrapper" >
-        <!-- <div class = 'major'>
-            <div class = 'home_image'></div>
-        </div> -->
+        
+        <!-- <div style="background-image: url('../images/bk1.jpg'); 
+        background-size:cover; height: 1000px; background-color: rgba(240,246,251, 0.7); background-blend-mode: overlay; 
+    position: relative; "></div> -->
         <!-- Header -->
         <header id="header" class="alt">
             <a href="{{ url_for('home') }}" class="logo"><strong>F1 Analysis</strong> <span>by Mitchell Sparrow</span></a>
@@ -64,11 +65,14 @@
             </ul>
         </nav>
 
+        
+
         <!-- Banner -->
         <section id="banner" >
             <div class="inner">
-                <header class="major">
-                    <h1>Your favorite F1 fantasy analysis tool</h1>
+                <header class="major" >
+                    <!-- <a href="#popup-details">popup</a> -->
+                    <h1 id="popup_open">Your favorite F1 fantasy analysis tool</h1>
                 </header>
                 <div class="content">
                     <p>A site to help you select better F1 fantasy teams<br />
@@ -81,6 +85,8 @@
             </div>
         </section>
 
+        
+
         <!-- Banner -->
         <section  class="major">
             <div class="inner">
@@ -91,7 +97,7 @@
                 
             </div>
         </section>
-
+<!-- 
         <section class="major ">
             <div class="inner ">
                 <h2>Tools:</h2>
@@ -105,7 +111,7 @@
                                 </div>
                                 <div>
                                     <h2>Fantasy Suggestions</h2>
-                                    <!-- <p >F1 Fantasy Analysis</p> -->
+                                   
                                 </div>
                             </div>
                             
@@ -121,7 +127,6 @@
                                 </div>
                                 <div>
                                     <h2>F1 Betting Odds</h2>
-                                    <!-- <p >F1 Fantasy Analysis</p> -->
                                 </div>
                             </div>
                             
@@ -137,7 +142,6 @@
                                 </div>
                                 <div>
                                     <h2 class="text-secondary-400">Latest F1 News</h2>
-                                    <!-- <p >F1 Fantasy Analysis</p> -->
                                 </div>
                             </div>
                             
@@ -153,33 +157,180 @@
                                 </div>
                                 <div>
                                     <h2>Contact</h2>
-                                    <!-- <p >F1 Fantasy Analysis</p> -->
                                 </div>
                             </div>
                            
                         </article>
                     </a>
                 </div>
-               
-                
             </div>
-            
             </div>
-        </section>
+        </section> -->
 
 
 
         <section class="major">
             <div class="inner">
-                <h2>Drivers:</h2>
+                <h2 style="margin-bottom:0px">Drivers</h2>
+                <p style="margin-bottom:0px">Select driver for more details:</p>
                 <div class="driver-grid"> 
+                    <div class="popup-details">
+                        <ul class="links">
+                            
+                            <div class="popup-driver grid-col-span-2 flow  text-neutral-100 driver-element-article">
+                                
+                                    <article >
+                                        <div >
+                                            <h2 style="padding: 0px; margin: 0; font-size:26px" id = "popup-name"></h2>
+                                            <h4 style="padding-top: 0px; opacity: 0.7;" id = "popup-place-of-birth"></h4>
+                                            <!-- <p >F1 Fantasy Analysis</p> -->
+                                            <div class="popup-driver-element-grid">
+                                                <div class="img-element">
+                                                    <img id="popup-image" src= "" >
+                                                </div>
+                                                <div class = 'driver-stats'>
+                                                    <div class="stat heading-entry">
+                                                        <p class="stat-left">
+                                                            Fantasy Data
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="stat data-entry">
+                                                        <p class="stat-left" ">
+                                                            Points:
+                                                            <span id = "popup-points" class="stat-right">
+                                                                
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="stat data-entry">
+                                                        <p class="stat-left" >
+                                                            Current Price:
+                                                            <span id = "popup-price" class="stat-right">
+                                                                
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                
+                                                    
+
+                                                    <div class="stat data-entry">
+                                                        <p class="stat-left" >
+                                                            Streak Quali:
+                                                            <span id = "popup-sq" class="stat-right">
+                                                                
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                
+                                                    <div class="stat data-entry">
+                                                        <p class="stat-left" >
+                                                            Streak Race:
+                                                            <span id = "popup-sr" class="stat-right">
+                                                                
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                    <div style="height:10px">
+                                                       
+                                                    </div>
+
+                                                    <div class="stat heading-entry">
+                                                        <p class="stat-left">
+                                                            Driver Data
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="stat data-entry">
+                                                        <p class="stat-left" >
+                                                            Podiums:
+                                                            <span id = "popup-podiums" class="stat-right">
+                                                                
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="stat data-entry">
+                                                        <p class="stat-left" >
+                                                            wins:
+                                                            <span id = "popup-wins" class="stat-right">
+                                                                
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="stat data-entry">
+                                                        <p class="stat-left" >
+                                                            Poles:
+                                                            <span id = "popup-poles" class="stat-right">
+                                                                
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="stat data-entry">
+                                                        <p class="stat-left" >
+                                                            Fastest Laps:
+                                                            <span id = "popup-fastest-laps" class="stat-right">
+                                                                
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="stat data-entry">
+                                                        <p class="stat-left" >
+                                                            Best Finish:
+                                                            <span id = "popup-best-finish" class="stat-right">
+                                                                
+                                                            </span>
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="stat data-entry">
+                                                        <p class="stat-left" >
+                                                            Best Finish Count:
+                                                            <span id = "popup-best-finish-count" class="stat-right">
+                                                                
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                
+                                                    <div style="padding-top: 10px;">
+
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div >
+                                       
+                                    </article>
+                                    
+                            </div>
+                            
+                            <div id = "popup-price-chart-div">
+                                <div class="stat heading-entry">
+                                    <p  class="stat-left">
+                                        Price Data Trend:
+                                    </p>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id = "popup-price-chart" ></canvas>
+                                </div>
+                                
+                            </div>
+                        
+                        </ul>
+                    </div>
 
                 {% for i in driver_list %}
-                <div class="driver grid-col-span-2 flow {{ i.team_name }} text-neutral-100 driver-element-article">
+
+                    <!-- main card -->
+                    <div id = "{{i}}" class="driver grid-col-span-2 flow {{ i.team_name }} text-neutral-100 driver-element-article">
+                        <!-- Menu -->
                     
-                        <article class="">
+                        <article >
                             <div >
-                                <h2>{{ i.name }}</h2>
+                                <h2 style="color:#ffffff">{{ i.name }}</h2>
                                 <!-- <p >F1 Fantasy Analysis</p> -->
                             </div >
                             <div class="driver-element-grid">
@@ -222,7 +373,6 @@
                                             
                                         var id = '{{i.imageUrl}}';
                                         
-
                                         var labels = jsonfile.map(function(e) {
                                             return e.game_period_id;
                                         });
@@ -243,48 +393,44 @@
                                             }
                                         }
 
-                                        
-
-                                        
-
                                         var myChart = new Chart(ctx, {
-                                        type: "line",
-                                        data: {
-                                            labels: labels,
-                                            datasets: [{
-                                            data: data,
-                                            pointBackgroundColor: graphColor(data),
-                                            borderColor: graphColor(data),
-                                            fill: false
-                                            }],
-                                        },
-                                        
-                                        options: {
-                                            tooltips: {
-                                                displayColors: false,
-                                                callbacks: {
-                                                    title: function(tooltipItems, data) { 
-                                                        return '';
-                                                    }
-                                                }
-                                            },
-                                            layout: {
-                                                padding: {
-                                                    top:10,
-                                                    bottom:10,
-                                                    left: 10,
-                                                    right: 10
-                                                }
-                                            },
-                                            scales: {
-                                                xAxes: [{
-                                                    display:false
+                                            type: "line",
+                                            data: {
+                                                labels: labels,
+                                                datasets: [{
+                                                data: data,
+                                                pointBackgroundColor: graphColor(data),
+                                                borderColor: graphColor(data),
+                                                fill: false
                                                 }],
-                                                yAxes: [{
-                                                    display:false
-                                                }]
+                                            },
+                                            
+                                            options: {
+                                                tooltips: {
+                                                    displayColors: false,
+                                                    callbacks: {
+                                                        title: function(tooltipItems, data) { 
+                                                            return '';
+                                                        }
+                                                    }
+                                                },
+                                                layout: {
+                                                    padding: {
+                                                        top:10,
+                                                        bottom:10,
+                                                        left: 10,
+                                                        right: 10
+                                                    }
+                                                },
+                                                scales: {
+                                                    xAxes: [{
+                                                        display:false
+                                                    }],
+                                                    yAxes: [{
+                                                        display:false
+                                                    }]
+                                                }
                                             }
-                                        }
                                         });
                                     </script>
                                     
@@ -309,24 +455,22 @@
                                     <div style="padding-top: 10px;">
                                        
                                     </div>
-                                    
-                                    
                                 </div>
-                                
-
                             </div>
-
-                            <!-- <canvas id="myChart" style="width:100%;max-width:700px"></canvas> -->
-                            
                         </article>
-                    
                 </div>
-                {%  endfor %}
                 
+                
+                {%  endfor %}
             </div>
-            
             </div>
         </section>
+
+        <!-- <div class="popup">
+            <button id="close">&times;</button>
+            <h2>Automatic Pop-Up</h2>
+            <p>Lorem, ipsum ... dignissimos?</p>
+        </div> -->
 
         
 
