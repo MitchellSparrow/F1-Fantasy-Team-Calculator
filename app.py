@@ -97,7 +97,7 @@ def bets():
 
     upcoming_drivers = drivers
 
-    for driver in upcoming_drivers:
+    for driver in upcoming_drivers[:]:
         if driver.upcoming_odds == 'N/A':
             upcoming_drivers.remove(driver)
 
@@ -113,7 +113,7 @@ def bets():
     for i in range(len(upcoming_drivers)):
         upcoming_drivers[i].upcoming_odds_rank = i + 1
 
-    for driver in drivers:
+    for driver in drivers[:]:
         if driver.odds == 'N/A':
             drivers.remove(driver)
 
@@ -139,7 +139,8 @@ def bets():
                 constructor.odds_value = int(odds_values[0]) / int(odds_values[1])
             constructor.avg_points = round(constructor.points / res[2], 1)
 
-    for constructor in constructors:
+    
+    for constructor in constructors[:]:
         if constructor.odds == 'N/A':
             constructors.remove(constructor)
 
