@@ -158,14 +158,14 @@ def get_f1_data(combined_cost_limit, selected_drivers, selected_constructors, in
             sumCost += column.price
 
             if ind == 0:
-                if column.streak_quali == '2':
+                if column.streak_quali == 2:
                     streaks += 5
-                if column.streak_race == '2':
+                if column.streak_race == 2:
                     streaks += 10
             else:
-                if column.streak_quali == '4':
+                if column.streak_quali == 4:
                     streaks += 5
-                if column.streak_race == '4':
+                if column.streak_race == 4:
                     streaks += 10
             if float(column.price) <= 20 and column.points > bestTurbo and ind != 0:
                 bestTurbo = column.points
