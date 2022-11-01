@@ -35,15 +35,15 @@ def get_drivers_and_consturctors():
         [(drivers.append(
                     Driver(player['id'],
                         player['first_name'] + " " + player['last_name'],
-                        float(re.sub(r'[^\x00-\x7f]',r'', decode(player['season_score']))),
-                        float(re.sub(r'[^\x00-\x7f]',r'', decode(player['price']))),
-                        int(json.loads(decode(player['streak_events_progress']).replace("\u0003",''))['top_ten_in_a_row_qualifying_progress']),
-                        int(json.loads(decode(player['streak_events_progress']).replace("\u0003",''))['top_ten_in_a_row_race_progress']),
+                        float(decode(player['season_score'])),
+                        float(decode(player['price'])),
+                        int(json.loads(decode(player['streak_events_progress']))['top_ten_in_a_row_qualifying_progress']),
+                        int(json.loads(decode(player['streak_events_progress']))['top_ten_in_a_row_race_progress']),
                         player['profile_image']['url'],
                         player['team_abbreviation'],
                         player['driver_data']['wins'],
                         player['driver_data']['podiums'],
-                        json.loads(decode(player['season_prices']).replace("\u000f",'').replace("\u0003",'').replace("\u0002",'').replace("\u0010",'')),
+                        json.loads(decode(player['season_prices'])),
                         player['driver_data']['place_of_birth'],
                         player['driver_data']['poles'],
                         player['driver_data']['fastest_laps'],
@@ -53,13 +53,13 @@ def get_drivers_and_consturctors():
                         )) if player['position_abbreviation'] == "DR" else constructors.append(
                     Constructor(player['id'],
                                 player['first_name'],
-                                float(re.sub(r'[^\x00-\x7f]',r'', decode(player['season_score']))),
-                                float(re.sub(r'[^\x00-\x7f]',r'', decode(player['price']))),
-                                int(json.loads(decode(player['streak_events_progress']).replace("\u0003",''))['top_ten_in_a_row_qualifying_progress']),
-                                int(json.loads(decode(player['streak_events_progress']).replace("\u0003",''))['top_ten_in_a_row_race_progress']),
+                                 float(decode(player['season_score'])),
+                                 float(decode(player['price'])),
+                                 int(json.loads(decode(player['streak_events_progress']))['top_ten_in_a_row_qualifying_progress']),
+                                 int(json.loads(decode(player['streak_events_progress']))['top_ten_in_a_row_race_progress']),
                                 ))) for player in players]
         
-       
+
         if drivers[0].price_change_data == None:
             print("Beginning of the season")
             number_races = 1
