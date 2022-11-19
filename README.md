@@ -1,6 +1,6 @@
 # F1 Fantasy Best Theoretical Team Application
 
-<img src="https://cdn.sanity.io/images/xbn4zmfs/production/1ead0d23cb4778e491d8d5ccb17ba776c586d372-5909x2616.png" width=50% height=50%>
+![alt text](https://cdn.sanity.io/images/xbn4zmfs/production/1ead0d23cb4778e491d8d5ccb17ba776c586d372-5909x2616.png?h=500)
 
 The following repository is for an application to determine the statistically best F1 fantasy team to select for the next grand prix. There are two ways in which you can run this application, either as a flask app in your web browser (recommended) or by just running the python script. The application takes streaks into account and also provides the turbo driver recommendation.
 
