@@ -30,7 +30,7 @@ def get_drivers_and_consturctors():
 
 
         drivers, constructors, = [], []
-
+        
 
         [(drivers.append(
                     Driver(player['id'],
@@ -66,10 +66,11 @@ def get_drivers_and_consturctors():
         else:
             number_races = len(drivers[0].price_change_data)
 
-        print(number_races)   
 
-    except:
+
+    except Exception as e:
         print("Failed")
+        print(e)
         drivers = []
         constructors = []
         number_races = 0
