@@ -11,27 +11,34 @@ import re
 
 
 def get_drivers_and_consturctors():
+    '''Function to get all of the driver and constructor data from the
+    F1 Fantasy Game API, and decode the values'''
 
+    # Define the API endpoint of the F1 Fantasy Game
     URL = 'https://fantasy-api.formula1.com/f1/2022/players'
 
     try:
-
+        # Get the json information from the API
         result = requests.get(url=URL)
 
         data = result.json()
         players = data['players']
         players_updated = []
 
+        # Remove players which have not yet been confirmed
+        # This often happens at the beginning of the season when 
+        # contracts have not yet been signed
         for player in players:
             if player["last_name"] != "TBC":
                 players_updated.append(player)
 
+        # Lets define some variables that will hold our data
         players = players_updated
-
-
         drivers, constructors, = [], []
         
-
+        # Loop through the json data, decode values which need to be decoded
+        # and then append the result to drivers or constructors depending on 
+        # the type of "player" 
         [(drivers.append(
                     Driver(player['id'],
                         player['first_name'] + " " + player['last_name'],
@@ -60,14 +67,17 @@ def get_drivers_and_consturctors():
                                 ))) for player in players]
         
 
+        # Lets put in a fail safe for the beginning of the season where
+        # the number of races that have past must be 1 so that we do not 
+        # divide by 0 
         if drivers[0].price_change_data == None:
             print("Beginning of the season")
             number_races = 1
         else:
             number_races = len(drivers[0].price_change_data)
 
-
-
+    # If the above process fails, print the error and return empty values
+    # so that the website can at least render 
     except Exception as e:
         print("Failed")
         print(e)
@@ -75,17 +85,15 @@ def get_drivers_and_consturctors():
         constructors = []
         number_races = 0
 
+    # Return the results
     return [drivers, constructors, number_races]
 
 
-def catch(func, *args, handle=lambda e : e, **kwargs):
-    try:
-        return func(*args, **kwargs)
-    except Exception as e:
-        return handle(e)
 
 def get_betting_data():
+    '''Function to get the betting data from our API'''
 
+    # Define our endpoint 
     URL = "https://formulaoneapi.herokuapp.com/bets"
 
     result = requests.get(url=URL)
@@ -119,8 +127,6 @@ def get_betting_data():
             print("Something else went wrong with upcoming driver bets")
             continue
 
-    # [catch(upcoming_driver_bet.append(Bet(driver['name'],driver['odds']))) for driver in upcoming_gp_drivers ]
-
     return [driver_bet, constructor_bets, upcoming_driver_bet, upcoming_gp_name]
 
 def get_news():
@@ -132,7 +138,6 @@ def get_news():
     [(articles.append(Article(article['title'],article['url'],article['source']))) for article in data]
 
     return articles
-
 
 def get_f1_data(combined_cost_limit, selected_drivers, selected_constructors, include_streak):
 
@@ -190,7 +195,6 @@ def get_f1_data(combined_cost_limit, selected_drivers, selected_constructors, in
     df["Turbo Points"] = df["Turbo Points"] / number_races_past
     df["Cost"] = costList
     df["Points"] = pointsList
-    # df["PPM"] = ppmList
     if include_streak:
         df["Streak Points"] = streak_points
         df["Predicted Points"] = df["Streak Points"] + \
