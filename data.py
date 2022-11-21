@@ -130,6 +130,8 @@ def get_betting_data():
     return [driver_bet, constructor_bets, upcoming_driver_bet, upcoming_gp_name]
 
 def get_news():
+    '''Function to get the news data from our API'''
+    # Define our API endpoint for news
     URL = "https://formulaoneapi.herokuapp.com/news"
     result = requests.get(url=URL)
 
